@@ -1301,6 +1301,34 @@
     "implement": "N",
     "enable": "N"
   },
+  "REQ-RUN-009": {
+    "section": "5. Running the Application",
+    "subsection": "",
+    "summary": "Start scripts must kill zombie processes holding the target port before binding.",
+    "implement": "N",
+    "enable": "N"
+  },
+  "REQ-RUN-010": {
+    "section": "5. Running the Application",
+    "subsection": "",
+    "summary": "Frontend proxy must have a connect timeout so a dead backend produces a fast error instead of an indefinite hang.",
+    "implement": "N",
+    "enable": "N"
+  },
+  "REQ-RUN-011": {
+    "section": "5. Running the Application",
+    "subsection": "",
+    "summary": "Apps with slow startup should log progress indicators and expose a readiness endpoint separate from liveness.",
+    "implement": "N",
+    "enable": "N"
+  },
+  "REQ-RUN-012": {
+    "section": "5. Running the Application",
+    "subsection": "",
+    "summary": "After a state-changing action that routes work, the response/UI must surface who the work was routed to.",
+    "implement": "N",
+    "enable": "N"
+  },
   "REQ-SEC-009": {
     "section": "6. Security",
     "subsection": "",

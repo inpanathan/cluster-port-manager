@@ -271,6 +271,10 @@ Test the ML pipeline like software: unit tests for preprocessing, feature engine
 - [ ] **REQ-RUN-006**: Differentiate background process helpers for long-running daemons from batch job wrappers. Batch jobs must propagate the child process exit code instead of treating all exits as failures.
 - [ ] **REQ-RUN-007**: Document default development credentials (from seed scripts) in the app cheatsheet so new developers can log in without reading source code.
 - [ ] **REQ-RUN-008**: Provide start and stop scripts for every service in the stack (backend, frontend, workers). Consistency across services reduces onboarding friction.
+- [ ] **REQ-RUN-009**: Start scripts must kill zombie processes holding the target port before binding. Use `lsof -ti:<PORT>` or equivalent to detect and terminate stale listeners so restarts succeed without manual intervention.
+- [ ] **REQ-RUN-010**: When a frontend dev server proxies API requests to a backend, the proxy must have a connect timeout (e.g. 5 seconds) so that a dead backend produces a fast, clear error instead of an indefinite hang.
+- [ ] **REQ-RUN-011**: Applications with slow startup (model loading, index building, large dataset ingestion) should log progress indicators during initialization and expose a readiness endpoint (separate from the liveness health check) so that dependent services and developers can distinguish "still starting" from "crashed."
+- [ ] **REQ-RUN-012**: After a state-changing action that assigns or routes work (e.g. case assignment, job dispatch), the response and/or UI must surface who or what the work was routed to, so the user can immediately follow up without querying the system.
 
 ## 6. Security
 
