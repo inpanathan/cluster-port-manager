@@ -37,13 +37,77 @@ class ServerSettings(BaseSettings):
     reload: bool = False
 
 
-# Add your project-specific nested settings here, e.g.:
-#
-# class LLMSettings(BaseSettings):
-#     api_key: str = ""
-#     model_id: str = "gpt-4"
-#     temperature: float = 0.3
-#     timeout_seconds: int = 30
+class EmbeddingSettings(BaseSettings):
+    """Embedding model configuration."""
+
+    model_name: str = "all-MiniLM-L6-v2"
+    dimension: int = 384
+    batch_size: int = 32
+
+
+class VectorStoreSettings(BaseSettings):
+    """Vector store configuration."""
+
+    collection_name: str = "knowledge_hub"
+    persist_directory: str = "data/vectorstore"
+    distance_metric: str = "cosine"
+
+
+class LLMSettings(BaseSettings):
+    """LLM client configuration."""
+
+    api_key: str = ""
+    model_id: str = "claude-sonnet-4-20250514"
+    max_tokens: int = 1024
+    temperature: float = 0.3
+    timeout_seconds: int = 60
+
+
+class ChunkingSettings(BaseSettings):
+    """Text chunking configuration."""
+
+    chunk_size: int = 1000
+    chunk_overlap: int = 200
+    min_chunk_size: int = 50
+
+
+class FileStoreSettings(BaseSettings):
+    """Original file storage configuration."""
+
+    base_directory: str = "data/originals"
+    max_file_size_mb: int = 50
+
+
+class RAGSettings(BaseSettings):
+    """RAG pipeline configuration."""
+
+    top_k: int = 5
+    similarity_threshold: float = 0.3
+    max_context_tokens: int = 4000
+
+
+class RedisSettings(BaseSettings):
+    """Redis cache configuration."""
+
+    host: str = "localhost"
+    port: int = 6379
+    db: int = 0
+    password: str = ""
+    default_ttl_days: int = 7
+    url: str = ""
+
+    @property
+    def connection_url(self) -> str:
+        if self.url:
+            return self.url
+        auth = f":{self.password}@" if self.password else ""
+        return f"redis://{auth}{self.host}:{self.port}/{self.db}"
+
+
+class CatalogSettings(BaseSettings):
+    """Source catalog database configuration."""
+
+    database_path: str = "data/catalog.db"
 
 
 class Settings(BaseSettings):
@@ -70,9 +134,14 @@ class Settings(BaseSettings):
     # ---- Nested settings ----
     logging: LoggingSettings = Field(default_factory=LoggingSettings)
     server: ServerSettings = Field(default_factory=ServerSettings)
-
-    # Add your project-specific settings here, e.g.:
-    # llm: LLMSettings = Field(default_factory=LLMSettings)
+    embedding: EmbeddingSettings = Field(default_factory=EmbeddingSettings)
+    vector_store: VectorStoreSettings = Field(default_factory=VectorStoreSettings)
+    llm: LLMSettings = Field(default_factory=LLMSettings)
+    chunking: ChunkingSettings = Field(default_factory=ChunkingSettings)
+    file_store: FileStoreSettings = Field(default_factory=FileStoreSettings)
+    rag: RAGSettings = Field(default_factory=RAGSettings)
+    redis: RedisSettings = Field(default_factory=RedisSettings)
+    catalog: CatalogSettings = Field(default_factory=CatalogSettings)
 
     @field_validator("app_env")
     @classmethod

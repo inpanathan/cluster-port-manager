@@ -3,1421 +3,1421 @@
     "section": "1. Agent Interaction",
     "subsection": "1.1 Workflow and Planning",
     "summary": "Use the README.md as the anchor for all project documentation and link to oth...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-AGT-002": {
     "section": "1. Agent Interaction",
     "subsection": "1.1 Workflow and Planning",
     "summary": "Always create a detailed implementation plan with steps and sub-steps first a...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-AGT-003": {
     "section": "1. Agent Interaction",
     "subsection": "1.1 Workflow and Planning",
     "summary": "As implementation progresses, keep updating the plan with status so that if t...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-AGT-004": {
     "section": "1. Agent Interaction",
     "subsection": "1.2 Troubleshooting Documentation",
     "summary": "Document all troubleshooting commands suggested and executed by the agent or ...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-001": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Use layered configuration (defaults, environment, overrides) with a single en...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-002": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Separate configuration per environment (dev, staging, production) without cod...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-003": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Validate all configuration values at startup and fail fast on invalid settings",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-004": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Version-control all hyperparameters and experiment configurations alongside code",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-005": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Use feature flags for incremental rollout of new capabilities",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CIC-001": {
     "section": "11. CI/CD",
     "subsection": "",
     "summary": "Enforce PR quality gates (linting, type checks, unit tests) that must pass be...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CIC-002": {
     "section": "11. CI/CD",
     "subsection": "",
     "summary": "Run scheduled integration and evaluation tests (nightly or weekly) for model ...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CIC-003": {
     "section": "11. CI/CD",
     "subsection": "",
     "summary": "Automate deployment to staging and production via pipeline (no manual steps)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CIC-004": {
     "section": "11. CI/CD",
     "subsection": "",
     "summary": "Run post-deploy smoke tests to verify critical paths after each deployment",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CIC-005": {
     "section": "11. CI/CD",
     "subsection": "",
     "summary": "Define pipelines as code (e.g., GitHub Actions, GitLab CI YAML) and version-c...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DAT-001": {
     "section": "12. Data Management and Versioning",
     "subsection": "",
     "summary": "Version datasets and data transformations using a data versioning tool (e.g.,...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DAT-002": {
     "section": "12. Data Management and Versioning",
     "subsection": "",
     "summary": "Validate data pipeline outputs at each stage before downstream consumption",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DAT-003": {
     "section": "12. Data Management and Versioning",
     "subsection": "",
     "summary": "Define and enforce data retention and deletion policies",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DAT-004": {
     "section": "12. Data Management and Versioning",
     "subsection": "",
     "summary": "Store large artifacts (models, datasets) in dedicated artifact storage, not i...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DAT-005": {
     "section": "12. Data Management and Versioning",
     "subsection": "",
     "summary": "Track end-to-end data lineage from raw sources through features to model pred...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DEP-001": {
     "section": "9. Dependency Management",
     "subsection": "",
     "summary": "Pin all dependency versions in lock files (e.g., `requirements.txt`, `poetry....",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DEP-002": {
     "section": "9. Dependency Management",
     "subsection": "",
     "summary": "Use virtual environments or containers to isolate project dependencies",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DEP-003": {
     "section": "9. Dependency Management",
     "subsection": "",
     "summary": "Run automated vulnerability scanning on dependencies (e.g., `pip-audit`, `npm...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DEP-004": {
     "section": "9. Dependency Management",
     "subsection": "",
     "summary": "Document system-level requirements (OS packages, GPU drivers, CUDA versions) ...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DOC-001": {
     "section": "10. Documentation Standards",
     "subsection": "",
     "summary": "Write docstrings for all public modules, classes, and functions",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DOC-002": {
     "section": "10. Documentation Standards",
     "subsection": "",
     "summary": "Maintain an architecture document describing system components, data flow, an...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DOC-003": {
     "section": "10. Documentation Standards",
     "subsection": "",
     "summary": "Create operational runbooks for deployment, rollback, and incident response",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DOC-004": {
     "section": "10. Documentation Standards",
     "subsection": "",
     "summary": "Keep a changelog that records notable changes, migrations, and breaking chang...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DOC-005": {
     "section": "10. Documentation Standards",
     "subsection": "",
     "summary": "Generate and publish API documentation (e.g., OpenAPI/Swagger) for all servic...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ERR-001": {
     "section": "8. Error Handling and Resilience",
     "subsection": "",
     "summary": "Define a consistent error response format across all services and APIs",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ERR-002": {
     "section": "8. Error Handling and Resilience",
     "subsection": "",
     "summary": "Implement graceful degradation (fallback responses, cached results) when down...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ERR-003": {
     "section": "8. Error Handling and Resilience",
     "subsection": "",
     "summary": "Set explicit timeouts for all external calls (APIs, databases, model inference)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ERR-004": {
     "section": "8. Error Handling and Resilience",
     "subsection": "",
     "summary": "Use retries with exponential backoff and jitter for transient failures",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ERR-005": {
     "section": "8. Error Handling and Resilience",
     "subsection": "",
     "summary": "Log all exceptions with full context (stack trace, request ID, input summary)...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-001": {
     "section": "2. Logging",
     "subsection": "2.1 Log Content and Structure",
     "summary": "Use structured logs (JSON or key-value) so you can query by fields like `requ...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-002": {
     "section": "2. Logging",
     "subsection": "2.1 Log Content and Structure",
     "summary": "Include consistent core fields in every entry: `timestamp`, `level`, `service...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-003": {
     "section": "2. Logging",
     "subsection": "2.1 Log Content and Structure",
     "summary": "Add AI-specific fields where relevant: `prompt_id`, `model`, `temperature`, `...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-004": {
     "section": "2. Logging",
     "subsection": "2.2 Prompt and AI Interaction Logging",
     "summary": "Log prompts and completions in a dedicated store (e.g., a SQLite/JSONL pipeli...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-005": {
     "section": "2. Logging",
     "subsection": "2.2 Prompt and AI Interaction Logging",
     "summary": "Attach logs close to the client that calls the AI so every completion is reco...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-006": {
     "section": "2. Logging",
     "subsection": "2.2 Prompt and AI Interaction Logging",
     "summary": "Redact or hash sensitive data (e.g., secrets, PII, internal URLs) before logs...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-007": {
     "section": "2. Logging",
     "subsection": "2.2 Prompt and AI Interaction Logging",
     "summary": "Separate \"prompt analytics\" logs (for refinement and UX) from operational log...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-008": {
     "section": "2. Logging",
     "subsection": "2.3 Levels, Volume, and Performance",
     "summary": "Use standard log levels consistently (`DEBUG`, `INFO`, `WARN`, `ERROR`) and t...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-009": {
     "section": "2. Logging",
     "subsection": "2.3 Levels, Volume, and Performance",
     "summary": "Keep AI call traces at `INFO`, but only enable full prompt/response bodies at...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-010": {
     "section": "2. Logging",
     "subsection": "2.3 Levels, Volume, and Performance",
     "summary": "Add level checks or guards so expensive debug logs are not computed on hot pa...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-011": {
     "section": "2. Logging",
     "subsection": "2.3 Levels, Volume, and Performance",
     "summary": "Sample high-volume events (e.g., frequent background completions) instead of ...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-012": {
     "section": "2. Logging",
     "subsection": "2.4 Standardization",
     "summary": "Centralize logging through a shared logger utility instead of scattered `prin...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-013": {
     "section": "2. Logging",
     "subsection": "2.4 Standardization",
     "summary": "Use AI itself to help sweep and standardize logs (e.g., convert ad-hoc prints...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-014": {
     "section": "2. Logging",
     "subsection": "2.4 Standardization",
     "summary": "For libraries and internal packages, accept a logger interface instead of ins...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-015": {
     "section": "2. Logging",
     "subsection": "2.5 AI-Assisted Coding Workflow",
     "summary": "When using an AI coding assistant, log key lifecycle events: suggestion reque...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-016": {
     "section": "2. Logging",
     "subsection": "2.5 AI-Assisted Coding Workflow",
     "summary": "Correlate these events with code locations (file, function, line span) so you...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-017": {
     "section": "2. Logging",
     "subsection": "2.5 AI-Assisted Coding Workflow",
     "summary": "For agentic workflows that refactor logging itself, log the agent's actions a...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-LOG-018": {
     "section": "2. Logging",
     "subsection": "2.5 AI-Assisted Coding Workflow",
     "summary": "In debugging sessions where you use AI to inspect logs, treat the AI as a rea...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-001": {
     "section": "3. Observability",
     "subsection": "3.1 Scope and Goals",
     "summary": "Define business goals and success metrics for the model/system",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-002": {
     "section": "3. Observability",
     "subsection": "3.1 Scope and Goals",
     "summary": "Define which components are in scope (data pipelines, training jobs, online i...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-003": {
     "section": "3. Observability",
     "subsection": "3.1 Scope and Goals",
     "summary": "Document owners (teams/people) responsible for each part of the stack",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-004": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "Use a versioned model registry (or equivalent) for all deployable models",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-005": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "For each model version, record training dataset reference (location, time ran...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-006": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "For each model version, record model code version (commit hash, container image)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-007": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "For each model version, record hyperparameters and training configuration",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-008": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "For each model version, record evaluation metrics on validation/test sets (by...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-009": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "Track data inputs/outputs across pipelines for lineage",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-010": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "Track environment information (runtime, libraries, containers) for lineage",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-011": {
     "section": "3. Observability",
     "subsection": "3.2 Model Registry, Versioning, and Lineage",
     "summary": "Track pipeline parameter configuration linked to model versions",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-012": {
     "section": "3. Observability",
     "subsection": "3.3 Data Observability",
     "summary": "Validate data schema (types, required fields, ranges) for training and infere...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-013": {
     "section": "3. Observability",
     "subsection": "3.3 Data Observability",
     "summary": "Monitor for missing values, outliers, and invalid categories",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-014": {
     "section": "3. Observability",
     "subsection": "3.3 Data Observability",
     "summary": "Monitor feature freshness and lag (for streaming/online systems)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-015": {
     "section": "3. Observability",
     "subsection": "3.3 Data Observability",
     "summary": "Compare live input distributions to training baselines (univariate + key join...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-016": {
     "section": "3. Observability",
     "subsection": "3.3 Data Observability",
     "summary": "Monitor output label/feedback distributions where labels are available",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-017": {
     "section": "3. Observability",
     "subsection": "3.3 Data Observability",
     "summary": "Set alerts for significant schema changes",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-018": {
     "section": "3. Observability",
     "subsection": "3.3 Data Observability",
     "summary": "Set alerts for large distribution shifts or spikes in null/invalid rates",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-019": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "Define task metrics (accuracy, F1, AUROC, RMSE, etc.) as applicable",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-020": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "Define business KPIs tied to the model (e.g., conversion, fraud catch rate)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-021": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "Measure latency and throughput (p50/p95/p99)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-022": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "Track metrics by cohort/segment (e.g., geography, traffic source, user segment)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-023": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "For GenAI/LLM systems, track prompt-response quality scores (human or automat...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-024": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "For GenAI/LLM systems, track safety issues (toxicity, PII leaks, hallucinatio...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-025": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "Configure dashboards and alerts for performance degradation vs. historical ba...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-026": {
     "section": "3. Observability",
     "subsection": "3.4 Model Performance Monitoring",
     "summary": "Configure dashboards and alerts for latency/error rate regressions",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-027": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "Log inference request metadata (timestamps, IDs, model version)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-028": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "Log key features or feature summaries (with PII redacted/anonymized)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-029": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "Log predictions, confidence scores, and decision outcomes",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-030": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "For LLM/GenAI, log prompt, context, and response with redaction/pseudonymizat...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-031": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "For LLM/GenAI, tag logs with safety flags, user feedback, and evaluation scor...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-032": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "Ensure logs are structured (JSON or equivalent) with consistent fields",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-033": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "Ensure logs are centralized and queryable in your logging/observability stack",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-034": {
     "section": "3. Observability",
     "subsection": "3.5 Logging (Inputs, Outputs, and Decisions)",
     "summary": "Ensure logs are governed by retention and access policies appropriate for sen...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-035": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Implement distributed tracing across API gateway / UI",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-036": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Implement distributed tracing across feature store / data service",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-037": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Implement distributed tracing across model server / LLM gateway",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-038": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Implement distributed tracing across downstream services (e.g., notification,...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-039": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Collect CPU, GPU, memory, disk, and network usage metrics for each component",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-040": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Monitor container/pod restarts and health checks",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-041": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Monitor queue lengths and backlog for batch/stream pipelines",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-042": {
     "section": "3. Observability",
     "subsection": "3.6 Tracing and Infrastructure Metrics",
     "summary": "Link traces/metrics to model versions and requests where possible",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-043": {
     "section": "3. Observability",
     "subsection": "3.7 Explainability, Bias, and Safety",
     "summary": "Provide local explanations for individual predictions (e.g., feature attribut...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-044": {
     "section": "3. Observability",
     "subsection": "3.7 Explainability, Bias, and Safety",
     "summary": "Provide global insights into feature importance and model behavior",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-045": {
     "section": "3. Observability",
     "subsection": "3.7 Explainability, Bias, and Safety",
     "summary": "Compare performance across key demographic or business segments for bias moni...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-046": {
     "section": "3. Observability",
     "subsection": "3.7 Explainability, Bias, and Safety",
     "summary": "Log and track bias metrics pre- and post-deployment as part of model cards",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-047": {
     "section": "3. Observability",
     "subsection": "3.7 Explainability, Bias, and Safety",
     "summary": "For GenAI, monitor for harmful or policy-violating content using safety evalu...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-048": {
     "section": "3. Observability",
     "subsection": "3.7 Explainability, Bias, and Safety",
     "summary": "For GenAI, log safety incidents and mitigation actions for audit",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-049": {
     "section": "3. Observability",
     "subsection": "3.8 Alerting and Runbooks",
     "summary": "Define alert thresholds for data quality and drift events",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-050": {
     "section": "3. Observability",
     "subsection": "3.8 Alerting and Runbooks",
     "summary": "Define alert thresholds for model performance drops",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-051": {
     "section": "3. Observability",
     "subsection": "3.8 Alerting and Runbooks",
     "summary": "Define alert thresholds for latency/error spikes",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-052": {
     "section": "3. Observability",
     "subsection": "3.8 Alerting and Runbooks",
     "summary": "Define alert thresholds for safety/bias incidents",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-053": {
     "section": "3. Observability",
     "subsection": "3.8 Alerting and Runbooks",
     "summary": "Create runbooks for each alert type specifying possible root causes, immediat...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-054": {
     "section": "3. Observability",
     "subsection": "3.8 Alerting and Runbooks",
     "summary": "Test alerts and runbooks periodically (game days / chaos drills)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-055": {
     "section": "3. Observability",
     "subsection": "3.9 Experiment Tracking and Deployment",
     "summary": "Track experiment hyperparameters, datasets, seeds, and code versions",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-056": {
     "section": "3. Observability",
     "subsection": "3.9 Experiment Tracking and Deployment",
     "summary": "Store metrics and artifacts per run in a central tracking system",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-057": {
     "section": "3. Observability",
     "subsection": "3.9 Experiment Tracking and Deployment",
     "summary": "Use canary / shadow / A/B deployments for new models or prompts",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-058": {
     "section": "3. Observability",
     "subsection": "3.9 Experiment Tracking and Deployment",
     "summary": "Compare metrics between old and new versions before full promotion",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-059": {
     "section": "3. Observability",
     "subsection": "3.9 Experiment Tracking and Deployment",
     "summary": "Ensure rollback is quick and traceable to a specific prior version",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-060": {
     "section": "3. Observability",
     "subsection": "3.10 Compliance, Privacy, and Auditability",
     "summary": "Document data sources, data use, and consent requirements",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-061": {
     "section": "3. Observability",
     "subsection": "3.10 Compliance, Privacy, and Auditability",
     "summary": "Enforce PII/PHI handling and redaction rules in logs and datasets",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-062": {
     "section": "3. Observability",
     "subsection": "3.10 Compliance, Privacy, and Auditability",
     "summary": "Enforce access controls for observability tools and raw logs",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-063": {
     "section": "3. Observability",
     "subsection": "3.10 Compliance, Privacy, and Auditability",
     "summary": "Ensure you can reconstruct \"which model, data, and config produced this predi...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-064": {
     "section": "3. Observability",
     "subsection": "3.11 Project-Specific Observability",
     "summary": "Define domain-specific checks (e.g., fraud, medical safety, financial risk)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-065": {
     "section": "3. Observability",
     "subsection": "3.11 Project-Specific Observability",
     "summary": "Create custom evaluation datasets and red-team scenarios for GenAI agents",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-OBS-066": {
     "section": "3. Observability",
     "subsection": "3.11 Project-Specific Observability",
     "summary": "Document any additional governance or reporting needs (internal or regulatory)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-001": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Create scripts for starting and running the application and place those scrip...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-002": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Document how to run these scripts in a file named app_cheatsheet.md",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-003": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Add all the necessary URLs and other details in the app_cheatsheet.md",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-001": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Store secrets in a secrets manager or environment variables; never commit sec...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-002": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Validate and sanitize all external inputs before processing",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-003": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Implement prompt injection defenses for LLM-facing inputs (input filtering, o...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-004": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Enforce least-privilege access controls for services, APIs, and data stores",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-005": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Scan container images and dependencies for known vulnerabilities before deplo...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-006": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Sign and verify model artifacts to prevent tampering",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-007": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Apply rate limiting and throttling to public-facing endpoints",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-008": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Conduct periodic security reviews and penetration testing",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-001": {
     "section": "4. Testing",
     "subsection": "4.1 Scope and Objectives",
     "summary": "Define project goal and primary model use case",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-002": {
     "section": "4. Testing",
     "subsection": "4.1 Scope and Objectives",
     "summary": "Identify critical risks (data quality, bias, safety, drift, latency)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-003": {
     "section": "4. Testing",
     "subsection": "4.1 Scope and Objectives",
     "summary": "Decide which environments will be covered by tests (dev, staging, prod shadow)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-004": {
     "section": "4. Testing",
     "subsection": "4.2 Data and Schema Testing",
     "summary": "Validate column names, types, and required fields (input schema tests)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-005": {
     "section": "4. Testing",
     "subsection": "4.2 Data and Schema Testing",
     "summary": "Enforce allowed ranges and categorical domains",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-006": {
     "section": "4. Testing",
     "subsection": "4.2 Data and Schema Testing",
     "summary": "Check missing values and invalid values per feature",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-007": {
     "section": "4. Testing",
     "subsection": "4.2 Data and Schema Testing",
     "summary": "Detect duplicates and obvious outliers",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-008": {
     "section": "4. Testing",
     "subsection": "4.2 Data and Schema Testing",
     "summary": "Compare basic stats (mean, std, quantiles) vs. training baselines for distrib...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-009": {
     "section": "4. Testing",
     "subsection": "4.2 Data and Schema Testing",
     "summary": "Alert when drift exceeds defined thresholds",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-010": {
     "section": "4. Testing",
     "subsection": "4.3 Unit Tests (Code-Level)",
     "summary": "Test individual preprocessing and feature engineering transforms on small, kn...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-011": {
     "section": "4. Testing",
     "subsection": "4.3 Unit Tests (Code-Level)",
     "summary": "Assert shape, type, and invariants (e.g., normalized ranges) for transforms",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-012": {
     "section": "4. Testing",
     "subsection": "4.3 Unit Tests (Code-Level)",
     "summary": "Cover metrics, loss functions, and custom logic in utility and helper functio...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-013": {
     "section": "4. Testing",
     "subsection": "4.3 Unit Tests (Code-Level)",
     "summary": "Ensure proper error handling for invalid inputs",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-014": {
     "section": "4. Testing",
     "subsection": "4.3 Unit Tests (Code-Level)",
     "summary": "Test request parsing and response formatting in inference wrapper / serving code",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-015": {
     "section": "4. Testing",
     "subsection": "4.3 Unit Tests (Code-Level)",
     "summary": "Verify default values and fallback behavior",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-016": {
     "section": "4. Testing",
     "subsection": "4.4 Integration and End-to-End Tests",
     "summary": "Verify \"load \u2192 preprocess \u2192 train \u2192 evaluate\" works on a small fixture datase...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-017": {
     "section": "4. Testing",
     "subsection": "4.4 Integration and End-to-End Tests",
     "summary": "Ensure all paths and configs resolve correctly in CI",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-018": {
     "section": "4. Testing",
     "subsection": "4.4 Integration and End-to-End Tests",
     "summary": "Verify \"request \u2192 feature store \u2192 model \u2192 response\" works with test inputs (i...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-019": {
     "section": "4. Testing",
     "subsection": "4.4 Integration and End-to-End Tests",
     "summary": "Ensure errors surface with clear messages and appropriate status codes",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-020": {
     "section": "4. Testing",
     "subsection": "4.4 Integration and End-to-End Tests",
     "summary": "Verify full end-to-end \"happy path\" workflow passes in a production-like envi...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-021": {
     "section": "4. Testing",
     "subsection": "4.5 Model Evaluation Tests",
     "summary": "Define target metrics (e.g., accuracy, F1, AUROC, RMSE, BLEU) and minimum thr...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-022": {
     "section": "4. Testing",
     "subsection": "4.5 Model Evaluation Tests",
     "summary": "Lock in a baseline model for regression comparison",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-023": {
     "section": "4. Testing",
     "subsection": "4.5 Model Evaluation Tests",
     "summary": "Evaluate metrics across key segments (e.g., geography, device type, demograph...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-024": {
     "section": "4. Testing",
     "subsection": "4.5 Model Evaluation Tests",
     "summary": "Run invariance tests (label-preserving perturbations should keep predictions ...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-025": {
     "section": "4. Testing",
     "subsection": "4.5 Model Evaluation Tests",
     "summary": "Run directional expectation tests (known changes should move predictions in e...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-026": {
     "section": "4. Testing",
     "subsection": "4.6 Special Tests for GenAI / LLM Systems",
     "summary": "Define evaluation criteria (e.g., relevance, correctness, style) and scoring ...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-027": {
     "section": "4. Testing",
     "subsection": "4.6 Special Tests for GenAI / LLM Systems",
     "summary": "Maintain a curated set of prompts with expected qualities or reference outputs",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-028": {
     "section": "4. Testing",
     "subsection": "4.6 Special Tests for GenAI / LLM Systems",
     "summary": "Create prompt suites to probe for policy violations (toxicity, self-harm, PII...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-029": {
     "section": "4. Testing",
     "subsection": "4.6 Special Tests for GenAI / LLM Systems",
     "summary": "Implement automatic checks or human review for flagged outputs",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-030": {
     "section": "4. Testing",
     "subsection": "4.6 Special Tests for GenAI / LLM Systems",
     "summary": "Re-run core prompt suite on each major model/prompt change and compare scores...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-031": {
     "section": "4. Testing",
     "subsection": "4.7 Performance, Load, and Reliability Testing",
     "summary": "Measure p50/p95/p99 latency under realistic load",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-032": {
     "section": "4. Testing",
     "subsection": "4.7 Performance, Load, and Reliability Testing",
     "summary": "Test throughput vs. target QPS and record resource usage",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-033": {
     "section": "4. Testing",
     "subsection": "4.7 Performance, Load, and Reliability Testing",
     "summary": "Validate scaling behavior and graceful degradation under peak load",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-034": {
     "section": "4. Testing",
     "subsection": "4.7 Performance, Load, and Reliability Testing",
     "summary": "Confirm rate limiting and backpressure mechanisms",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-035": {
     "section": "4. Testing",
     "subsection": "4.7 Performance, Load, and Reliability Testing",
     "summary": "Test timeouts, partial failures, and fallback strategies (e.g., cached predic...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-036": {
     "section": "4. Testing",
     "subsection": "4.8 Bias, Fairness, and Safety",
     "summary": "Compare metrics across protected or critical groups where appropriate (bias/f...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-037": {
     "section": "4. Testing",
     "subsection": "4.8 Bias, Fairness, and Safety",
     "summary": "Document observed disparities and mitigation steps",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-038": {
     "section": "4. Testing",
     "subsection": "4.8 Bias, Fairness, and Safety",
     "summary": "Test domain-specific safety scenarios (fraud, medical, financial, etc.)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-039": {
     "section": "4. Testing",
     "subsection": "4.8 Bias, Fairness, and Safety",
     "summary": "Check for harmful failure modes and worst-case behavior",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-040": {
     "section": "4. Testing",
     "subsection": "4.9 Regression and CI/CD Integration",
     "summary": "Capture baseline metrics and behaviors; fail if new versions regress beyond a...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-041": {
     "section": "4. Testing",
     "subsection": "4.9 Regression and CI/CD Integration",
     "summary": "Run unit and key integration tests on every commit/PR",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-042": {
     "section": "4. Testing",
     "subsection": "4.9 Regression and CI/CD Integration",
     "summary": "Run heavier evaluation tests on scheduled or pre-release pipelines",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-043": {
     "section": "4. Testing",
     "subsection": "4.9 Regression and CI/CD Integration",
     "summary": "Document required tests and thresholds for promoting a model to staging and p...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-044": {
     "section": "4. Testing",
     "subsection": "4.10 Reproducibility and Documentation",
     "summary": "Fix random seeds for tests and training runs under test",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-045": {
     "section": "4. Testing",
     "subsection": "4.10 Reproducibility and Documentation",
     "summary": "Record library versions, configs, and model artifacts for failed runs",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-046": {
     "section": "4. Testing",
     "subsection": "4.10 Reproducibility and Documentation",
     "summary": "Maintain a catalog of tests (data, model, safety, performance) and what risks...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-047": {
     "section": "4. Testing",
     "subsection": "4.10 Reproducibility and Documentation",
     "summary": "Link tests to runbooks for debugging common failures",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-048": {
     "section": "4. Testing",
     "subsection": "4.11 Project-Specific Tests",
     "summary": "Define domain-specific acceptance tests (e.g., fraud detection scenarios, ran...",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-049": {
     "section": "4. Testing",
     "subsection": "4.11 Project-Specific Tests",
     "summary": "Wire custom dashboards and alerts into monitoring for \"tests in production.\"",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-050": {
     "section": "4. Testing",
     "subsection": "4.11 Project-Specific Tests",
     "summary": "Implement any regulatory/compliance-driven tests required in your domain",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-051": {
     "section": "4. Testing",
     "subsection": "4.12 Test Environment Isolation",
     "summary": "Isolate test environments from .env and dev configuration. Override environment variables in root conftest.py to ensure tests run deterministically against mocks with calibrated thresholds.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-052": {
     "section": "4. Testing",
     "subsection": "4.12 Test Environment Isolation",
     "summary": "Separate test thresholds calibrated for mocks from real model integration thresholds. Unit tests should run against mocks; real model integration tests should be in a separate category.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-TST-053": {
     "section": "4. Testing",
     "subsection": "4.12 Test Environment Isolation",
     "summary": "When adding global handlers or middleware, verify existing tests that assert on handler counts, middleware ordering, or singleton state.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-004": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Scripts in subdirectories must resolve the project root before invoking tools that expect root-relative module paths or configs.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-005": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Start scripts should be idempotent — detect and stop any existing process before starting a new one to avoid port conflicts and orphaned processes.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-006": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Differentiate background process helpers for long-running daemons from batch job wrappers. Batch jobs must propagate the child process exit code.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-007": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Document default development credentials in the app cheatsheet so new developers can log in without reading source code.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-008": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Provide start and stop scripts for every service in the stack (backend, frontend, workers).",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-009": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Start scripts must kill zombie processes holding the target port before binding.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-010": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Frontend proxy must have a connect timeout so a dead backend produces a fast error instead of an indefinite hang.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-011": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "Apps with slow startup should log progress indicators and expose a readiness endpoint separate from liveness.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-RUN-012": {
     "section": "5. Running the Application",
     "subsection": "",
     "summary": "After a state-changing action that routes work, the response/UI must surface who the work was routed to.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-SEC-009": {
     "section": "6. Security",
     "subsection": "",
     "summary": "Add model weights, binary artifacts, terminal recordings, and large data files to .gitignore proactively. Review untracked files before every commit.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-006": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Never use inline comments in .env files. Many parsers include the comment text as part of the value.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-007": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Never store secrets or connection strings in YAML config files. Use YAML only for non-sensitive defaults; secrets must come from environment variables or a secrets manager.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-008": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Avoid redundant config flags that control the same behavior. Use a single source of truth for mode switching.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CFG-009": {
     "section": "7. Configuration Management",
     "subsection": "",
     "summary": "Isolate test configuration from development and production. Create a dedicated test config and override environment variables in test fixtures.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ERR-006": {
     "section": "8. Error Handling and Resilience",
     "subsection": "",
     "summary": "Catch the narrowest exception type needed. Broad except Exception catches mask real runtime errors.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ERR-007": {
     "section": "8. Error Handling and Resilience",
     "subsection": "",
     "summary": "Set explicit output limits (e.g., max_tokens) for every LLM generation call. Never rely on large defaults.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DEP-005": {
     "section": "9. Dependency Management",
     "subsection": "",
     "summary": "When using optional dependency groups (extras), setup and CI scripts must install all required extras explicitly.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DEP-006": {
     "section": "9. Dependency Management",
     "subsection": "",
     "summary": "Use the project's package manager to execute commands to ensure the correct virtual environment and dependencies are used.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DOC-006": {
     "section": "10. Documentation Standards",
     "subsection": "",
     "summary": "The deployment runbook must include prerequisite installation steps as the first section, before any operational procedures.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DOC-007": {
     "section": "10. Documentation Standards",
     "subsection": "",
     "summary": "When scripts source configuration from .env, maintain a .env.example template with all required variables and descriptive comments.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CIC-006": {
     "section": "11. CI/CD",
     "subsection": "",
     "summary": "Configure pre-commit hooks for large file detection to prevent accidental commits of model weights, ONNX files, datasets, and other binary artifacts.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CIC-007": {
     "section": "11. CI/CD",
     "subsection": "",
     "summary": "Always review auto-generated database migration files before applying. Auto-generated migrations may include extraneous schema changes.",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   }
 }

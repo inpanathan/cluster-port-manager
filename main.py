@@ -27,19 +27,12 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:  # noqa: ARG001
 
     Add your startup logic here (load models, connect to databases, etc.).
     """
+    from src.api.dependencies import init_services, shutdown_services
+
     logger.info("app_startup", env=settings.app_env)
-
-    # TODO: Add startup logic here, e.g.:
-    # - Load ML models
-    # - Connect to vector store
-    # - Initialize caches
-
+    init_services()
     yield
-
-    # TODO: Add shutdown logic here, e.g.:
-    # - Close database connections
-    # - Flush logs
-
+    shutdown_services()
     logger.info("app_shutdown")
 
 
@@ -53,8 +46,8 @@ def create_app() -> FastAPI:
     from src.utils.errors import AppError
 
     app = FastAPI(
-        title="AI/ML Project",
-        description="Add your project description here.",
+        title="Knowledge Hub",
+        description="RAG application for document ingestion, chat, Q&A generation, interview prep, and summarization.",
         version="0.1.0",
         lifespan=lifespan,
         docs_url="/docs" if settings.app_debug else None,
@@ -95,8 +88,15 @@ def _error_code_to_status(code: str) -> int:
     """Map AppError codes to HTTP status codes."""
     mapping = {
         "VALIDATION_ERROR": 400,
+        "NO_RELEVANT_CONTEXT": 400,
         "UNAUTHORIZED": 401,
         "NOT_FOUND": 404,
+        "SOURCE_NOT_FOUND": 404,
+        "FILE_NOT_FOUND": 404,
+        "SESSION_NOT_FOUND": 404,
+        "DUPLICATE_SOURCE": 409,
+        "FILE_TOO_LARGE": 413,
+        "UNSUPPORTED_FORMAT": 415,
         "RATE_LIMITED": 429,
     }
     return mapping.get(code, 500)

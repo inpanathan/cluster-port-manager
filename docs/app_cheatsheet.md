@@ -49,7 +49,27 @@ Seeded by `bash scripts/db_seed.sh`. Password for all accounts: `<!-- TODO: fill
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| <!-- TODO: fill in API endpoints --> | | |
+| `POST` | `/sources/upload` | Upload and ingest a file (PDF, DOCX, TXT, MD) |
+| `POST` | `/sources/url` | Ingest content from a URL |
+| `POST` | `/sources/text` | Ingest raw text content |
+| `POST` | `/sources/folder` | Ingest all supported files from a local folder |
+| `GET` | `/sources` | List sources with optional filters |
+| `GET` | `/sources/{id}` | Get full source detail |
+| `PUT` | `/sources/{id}` | Update source metadata (title, tags, description) |
+| `DELETE` | `/sources/{id}` | Delete source, vectors, and stored files |
+| `POST` | `/sources/{id}/reindex` | Re-index a source from its stored original |
+| `GET` | `/sources/{id}/original` | Download the original source file |
+| `GET` | `/sources/{id}/view` | View the source inline |
+| `POST` | `/chat` | Send a chat message, get RAG-powered response |
+| `GET` | `/chat/sessions` | List all chat sessions |
+| `GET` | `/chat/sessions/{id}` | Get chat session with message history |
+| `POST` | `/summarize` | Summarize by source IDs or topic |
+| `POST` | `/qna/generate` | Generate Q&A pairs from topic or sources |
+| `GET` | `/qna/{id}` | Retrieve a generated Q&A set |
+| `POST` | `/qna/{id}/export` | Export Q&A set as JSON or Markdown |
+| `POST` | `/interview/start` | Start an interview preparation session |
+| `POST` | `/interview/{id}/answer` | Submit answer, get feedback + next question |
+| `GET` | `/interview/{id}/summary` | Get interview summary with scores |
 
 ## Commands
 

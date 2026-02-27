@@ -3,357 +3,357 @@
     "section": "1. Agent Document Outputs",
     "subsection": "",
     "summary": "Each document type shall follow a consistent template (sections, headings, tables) to ensure uniform outputs across projects",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ADO-002": {
     "section": "1. Agent Document Outputs",
     "subsection": "1.1 Architecture Overview",
     "summary": "Produce an architecture overview describing the system's purpose, context, key components, and main data/control flows",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ADO-003": {
     "section": "1. Agent Document Outputs",
     "subsection": "1.1 Architecture Overview",
     "summary": "Use C4-style context diagrams as the default notation for architecture overviews",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ADO-004": {
     "section": "1. Agent Document Outputs",
     "subsection": "1.2 Design Specification",
     "summary": "Produce a design specification covering module responsibilities, interfaces, data models, error-handling strategies, and non-functional constraints",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ADO-005": {
     "section": "1. Agent Document Outputs",
     "subsection": "1.3 Deployment & Operational Runbook",
     "summary": "Produce a deployment and operational runbook covering environments, infrastructure topology, CI/CD steps, configuration, scaling strategy, observability, and SLOs",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-ADO-006": {
     "section": "1. Agent Document Outputs",
     "subsection": "1.4 Product / Requirements Document (PRD/SRS Hybrid)",
     "summary": "Produce a PRD/SRS hybrid document covering user goals, functional requirements, quality attributes, acceptance criteria, and dependencies",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-001": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.1 Problem Statement & Constraints",
     "summary": "Supply business goals and target users as input to the agent",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-002": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.1 Problem Statement & Constraints",
     "summary": "Supply success metrics as input to the agent",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-003": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.1 Problem Statement & Constraints",
     "summary": "Supply regulatory or infrastructure limits as input to the agent",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-004": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.2 Architectural Drivers",
     "summary": "Supply prioritized functional requirements as architectural drivers",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-005": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.2 Architectural Drivers",
     "summary": "Supply quality-attribute scenarios as architectural drivers",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-006": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.2 Architectural Drivers",
     "summary": "Supply concerns and constraints in structured form (e.g., separate markdown or tables)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-007": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.3 Existing System Context",
     "summary": "Supply repository snapshot and high-level description as existing system context",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-008": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.3 Existing System Context",
     "summary": "Supply any blessed patterns or reference architectures the agent shall reuse",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-009": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.4 Guardrails & Style",
     "summary": "Supply naming conventions as guardrails for the agent",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-010": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.4 Guardrails & Style",
     "summary": "Supply diagram notation (C4 / UML) preferences as guardrails for the agent",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-011": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.4 Guardrails & Style",
     "summary": "Supply document voice and tone preferences as guardrails for the agent",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-012": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.4 Guardrails & Style",
     "summary": "Supply decision rules categorized as Always / Ask First / Never (e.g., never store PII, ask before choosing a DB)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-INP-013": {
     "section": "2. Input Requirements for the Agent",
     "subsection": "2.5 Codebase Grounding",
     "summary": "For large systems, the agent shall work against an indexed codebase / document store rather than raw, ad-hoc pastes, so descriptions and diagrams are grounded in reality",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-001": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.1 Plan-First Mode",
     "summary": "The agent shall outline sections, open questions, and assumptions before writing full prose",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-002": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.2 Iterative Refinement",
     "summary": "Start with coarse documents (context + containers) before detailed content",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-003": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.2 Iterative Refinement",
     "summary": "Iterate into components, interfaces, and deployment details progressively",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-004": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.2 Iterative Refinement",
     "summary": "Update earlier diagrams as the design evolves",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-005": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.3 Human Checkpoints",
     "summary": "After each phase (drivers, architecture, detailed design, deployment), a human must approve or comment",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-006": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.3 Human Checkpoints",
     "summary": "Feed diffs and comments back so the agent revises rather than rewriting from scratch",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-007": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.4 Self-Checks",
     "summary": "The agent shall include a Validation / Open Issues section listing assumptions, risks, and items to confirm",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-008": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.4 Self-Checks",
     "summary": "The agent shall perform a consistency check against the original requirements",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-GEN-009": {
     "section": "3. Generation & Review Practices",
     "subsection": "3.5 Separation of Concerns",
     "summary": "Use separate runs/agents for code vs. documentation (e.g., one agent generates the spec, another implements against it) to keep the design stable and auditable",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-001": {
     "section": "4. Content Standards",
     "subsection": "4.1 Traceability",
     "summary": "Map requirements to architectural drivers to design decisions",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-002": {
     "section": "4. Content Standards",
     "subsection": "4.1 Traceability",
     "summary": "Maintain traceability in small tables the agent keeps up to date",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-003": {
     "section": "4. Content Standards",
     "subsection": "4.2 Explicit Decisions",
     "summary": "Capture key trade-offs (chose X over Y because...) instead of only describing the final design",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-004": {
     "section": "4. Content Standards",
     "subsection": "4.3 Non-Functional Details",
     "summary": "Document performance budgets in each specification",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-005": {
     "section": "4. Content Standards",
     "subsection": "4.3 Non-Functional Details",
     "summary": "Document reliability targets in each specification",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-006": {
     "section": "4. Content Standards",
     "subsection": "4.3 Non-Functional Details",
     "summary": "Document security boundaries in each specification",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-007": {
     "section": "4. Content Standards",
     "subsection": "4.3 Non-Functional Details",
     "summary": "Document observability requirements in each specification",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-008": {
     "section": "4. Content Standards",
     "subsection": "4.3 Non-Functional Details",
     "summary": "Document how the design meets each non-functional requirement",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-009": {
     "section": "4. Content Standards",
     "subsection": "4.4 LLM / Agent Specifics",
     "summary": "Document model names and versions used in the system",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-010": {
     "section": "4. Content Standards",
     "subsection": "4.4 LLM / Agent Specifics",
     "summary": "Document prompting strategy used in the system",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-011": {
     "section": "4. Content Standards",
     "subsection": "4.4 LLM / Agent Specifics",
     "summary": "Document tools used by the agent system",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-012": {
     "section": "4. Content Standards",
     "subsection": "4.4 LLM / Agent Specifics",
     "summary": "Document safety policies governing the agent system",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-013": {
     "section": "4. Content Standards",
     "subsection": "4.4 LLM / Agent Specifics",
     "summary": "Document configuration parameters for the agent system",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-014": {
     "section": "4. Content Standards",
     "subsection": "4.4 LLM / Agent Specifics",
     "summary": "Follow LLM system-engineering guidelines for all agent documentation",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-015": {
     "section": "4. Content Standards",
     "subsection": "4.5 Diagrams",
     "summary": "For C4, sequence, and deployment diagrams, generate text-based specs (PlantUML, Mermaid) under a Diagrams section",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-CST-016": {
     "section": "4. Content Standards",
     "subsection": "4.5 Diagrams",
     "summary": "Ensure all diagrams are versionable and reviewable",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DLP-001": {
     "section": "5. Deployment & Lifecycle Practices",
     "subsection": "5.1 Repo-Stored Documentation",
     "summary": "Store generated documents in the repository",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DLP-002": {
     "section": "5. Deployment & Lifecycle Practices",
     "subsection": "5.1 Repo-Stored Documentation",
     "summary": "Wire an agent into CI to flag drift between code and documentation (e.g., changed endpoints, config keys, queues)",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DLP-003": {
     "section": "5. Deployment & Lifecycle Practices",
     "subsection": "5.2 Orchestrated Updates",
     "summary": "Use orchestration (e.g., LangGraph or equivalent) so one agent updates architecture documents when another introduces significant structural changes",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DLP-004": {
     "section": "5. Deployment & Lifecycle Practices",
     "subsection": "5.3 Cache & Reuse",
     "summary": "The system shall retrieve relevant sections of past documents as context when generating new ones",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DLP-005": {
     "section": "5. Deployment & Lifecycle Practices",
     "subsection": "5.3 Cache & Reuse",
     "summary": "Maintain consistent terminology and patterns across documents",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DLP-006": {
     "section": "5. Deployment & Lifecycle Practices",
     "subsection": "5.4 Governance",
     "summary": "Define who signs off on architecture and deployment documents",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   },
   "REQ-DLP-007": {
     "section": "5. Deployment & Lifecycle Practices",
     "subsection": "5.4 Governance",
     "summary": "Require sign-off before certain CI stages (e.g., infrastructure changes) can proceed",
-    "implement": "N",
-    "enable": "N"
+    "implement": "Y",
+    "enable": "Y"
   }
 }
