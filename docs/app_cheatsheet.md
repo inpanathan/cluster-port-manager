@@ -123,7 +123,7 @@ uv run pytest tests/ --cov=src --cov-report=html
 | `DATABASE__URL` | — | Database connection string |
 | `EMBEDDING__MODEL_NAME` | `BAAI/bge-large-en-v1.5` | Embedding model name |
 | `EMBEDDING__DIMENSION` | `1024` | Embedding vector dimension |
-| `LLM__VLLM_BASE_URL` | `http://localhost:8000/v1` | vLLM OpenAI-compatible API URL |
+| `LLM__VLLM_BASE_URL` | `http://localhost:8001/v1` | vLLM OpenAI-compatible API URL |
 | `LLM__VLLM_MODEL` | `Qwen/Qwen2.5-14B-Instruct` | Model served by vLLM |
 | `VECTOR_STORE__URL` | `http://localhost:6333` | Qdrant server URL |
 | `GOOGLE_DRIVE__CREDENTIALS_FILE` | `configs/gdrive_credentials.json` | Google OAuth credentials file |
@@ -160,6 +160,7 @@ uv run pytest tests/ --cov=src --cov-report=html
 | `src/books/` | Book catalog models, repository, service |
 | `src/data/gdrive_client.py` | Google Drive API wrapper |
 | `src/data/book_metadata.py` | Multi-format book metadata extraction |
+| `scripts/authenticate_gdrive.py` | Interactive Google Drive OAuth authentication |
 | `scripts/download_books.py` | Download books from Google Drive |
 | `scripts/seed_books.sh` | Book seeding orchestrator |
 | `scripts/start_vllm.sh` | Start/stop vLLM inference server |
@@ -256,7 +257,7 @@ bash frontend/scripts/stop.sh
 # Start Qdrant vector database (Docker)
 bash scripts/start_qdrant.sh
 
-# Start vLLM inference server (default: Qwen2.5-14B-Instruct)
+# Start vLLM inference server (default: Qwen2.5-14B-Instruct, port 8001)
 bash scripts/start_vllm.sh
 
 # Start with a different model
@@ -269,6 +270,8 @@ bash scripts/start_qdrant.sh stop
 # Check Qdrant status
 bash scripts/start_qdrant.sh status
 ```
+
+> **Note:** vLLM defaults to port 8001 (override with `VLLM_PORT`). Port 8000 is reserved for the FastAPI app.
 
 ### Neo4j Knowledge Graph
 
@@ -307,6 +310,9 @@ uv run python scripts/build_knowledge_graph.py --dry-run
 # Install book dependencies (Google Drive + EPUB support)
 uv sync --extra dev --extra books
 
+# First-time: authenticate with Google Drive (interactive, opens browser)
+uv run python scripts/authenticate_gdrive.py
+
 # List books in Google Drive folder (no downloads)
 bash scripts/seed_books.sh --dry-run
 
@@ -316,6 +322,8 @@ bash scripts/seed_books.sh
 # Check book library status (counts)
 bash scripts/seed_books.sh status
 ```
+
+> **First-time setup:** Run `authenticate_gdrive.py` before any unattended pipeline. It caches the OAuth token to `data/gdrive_token.json`. `seed_books.sh` will fail fast if the token is missing.
 
 ### Book Embedding Pipeline
 
@@ -401,7 +409,7 @@ bash scripts/start_qdrant.sh         # Start Qdrant (Docker)
 bash scripts/start_neo4j.sh          # Start Neo4j (Docker)
 
 # 5. Start vLLM inference server (separate terminal)
-bash scripts/start_vllm.sh           # Serves Qwen2.5-14B-Instruct on port 8000
+bash scripts/start_vllm.sh           # Serves Qwen2.5-14B-Instruct on port 8001
 
 # 6. Start the application server
 APP_ENV=local bash scripts/start_server.sh

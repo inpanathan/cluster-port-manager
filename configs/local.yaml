@@ -10,7 +10,7 @@ embedding:
   dimension: 1024
 
 llm:
-  vllm_base_url: "http://localhost:8000/v1"
+  vllm_base_url: "http://localhost:8001/v1"
   vllm_model: "Qwen/Qwen2.5-14B-Instruct"
   temperature: 0.3
   max_tokens: 1024

@@ -22,6 +22,15 @@ if [[ -f ".env" ]]; then
     set +a
 fi
 
+# Pre-flight: verify Google Drive token exists (avoid hanging on OAuth browser flow)
+TOKEN_FILE="${GOOGLE_DRIVE__TOKEN_FILE:-data/gdrive_token.json}"
+if [[ ! -f "$TOKEN_FILE" ]]; then
+    echo "ERROR: Google Drive token not found at $TOKEN_FILE"
+    echo "Run the interactive auth first:"
+    echo "  uv run python scripts/authenticate_gdrive.py"
+    exit 1
+fi
+
 SKIP_EMBED=false
 SKIP_GRAPH=false
 

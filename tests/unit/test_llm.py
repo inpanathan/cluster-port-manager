@@ -22,7 +22,7 @@ def test_factory_returns_vllm_client_for_local() -> None:
     """create_llm_client('local') returns VLLMLLMClient."""
     client = create_llm_client(
         "local",
-        vllm_base_url="http://localhost:8000/v1",
+        vllm_base_url="http://localhost:8001/v1",
         vllm_model="test-model",
     )
     assert isinstance(client, VLLMLLMClient)
@@ -47,7 +47,7 @@ def test_vllm_client_generate_calls_openai_api() -> None:
     """VLLMLLMClient.generate calls OpenAI chat completions."""
     client = create_llm_client(
         "local",
-        vllm_base_url="http://localhost:8000/v1",
+        vllm_base_url="http://localhost:8001/v1",
         vllm_model="test-model",
     )
 

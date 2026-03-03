@@ -8,7 +8,7 @@
 #
 # Environment variables:
 #   LLM__VLLM_MODEL          Model to serve (default: Qwen/Qwen2.5-14B-Instruct)
-#   VLLM_PORT                Port to bind (default: 8000)
+#   VLLM_PORT                Port to bind (default: 8001)
 #   VLLM_GPU_MEMORY_UTIL     GPU memory utilization 0-1 (default: 0.90)
 
 set -euo pipefail
@@ -25,7 +25,7 @@ if [ -f "$PROJECT_ROOT/.env" ]; then
 fi
 
 MODEL="${1:-${LLM__VLLM_MODEL:-Qwen/Qwen2.5-14B-Instruct}}"
-PORT="${VLLM_PORT:-8000}"
+PORT="${VLLM_PORT:-8001}"
 GPU_MEM="${VLLM_GPU_MEMORY_UTIL:-0.90}"
 
 # Handle stop command

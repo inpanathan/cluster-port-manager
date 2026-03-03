@@ -14,13 +14,13 @@ from pathlib import Path
 from typing import Any
 
 import yaml  # type: ignore[import-untyped]
-from pydantic import Field, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
-class LoggingSettings(BaseSettings):
+class LoggingSettings(BaseModel):
     """Logging configuration."""
 
     level: str = "INFO"
@@ -28,7 +28,7 @@ class LoggingSettings(BaseSettings):
     show_locals: bool = False
 
 
-class ServerSettings(BaseSettings):
+class ServerSettings(BaseModel):
     """Application server configuration."""
 
     host: str = "0.0.0.0"
@@ -37,7 +37,7 @@ class ServerSettings(BaseSettings):
     reload: bool = False
 
 
-class EmbeddingSettings(BaseSettings):
+class EmbeddingSettings(BaseModel):
     """Embedding model configuration."""
 
     model_name: str = "BAAI/bge-large-en-v1.5"
@@ -46,7 +46,7 @@ class EmbeddingSettings(BaseSettings):
     device: str = "cpu"
 
 
-class VectorStoreSettings(BaseSettings):
+class VectorStoreSettings(BaseModel):
     """Vector store configuration."""
 
     collection_name: str = "knowledge_hub"
@@ -55,7 +55,7 @@ class VectorStoreSettings(BaseSettings):
     url: str = "http://localhost:6333"
 
 
-class LLMSettings(BaseSettings):
+class LLMSettings(BaseModel):
     """LLM client configuration."""
 
     api_key: str = ""
@@ -63,11 +63,11 @@ class LLMSettings(BaseSettings):
     max_tokens: int = 1024
     temperature: float = 0.3
     timeout_seconds: int = 60
-    vllm_base_url: str = "http://localhost:8000/v1"
+    vllm_base_url: str = "http://localhost:8001/v1"
     vllm_model: str = "Qwen/Qwen2.5-14B-Instruct"
 
 
-class ChunkingSettings(BaseSettings):
+class ChunkingSettings(BaseModel):
     """Text chunking configuration."""
 
     chunk_size: int = 1000
@@ -75,14 +75,14 @@ class ChunkingSettings(BaseSettings):
     min_chunk_size: int = 50
 
 
-class FileStoreSettings(BaseSettings):
+class FileStoreSettings(BaseModel):
     """Original file storage configuration."""
 
     base_directory: str = "data/originals"
     max_file_size_mb: int = 50
 
 
-class RAGSettings(BaseSettings):
+class RAGSettings(BaseModel):
     """RAG pipeline configuration."""
 
     top_k: int = 5
@@ -90,7 +90,7 @@ class RAGSettings(BaseSettings):
     max_context_tokens: int = 4000
 
 
-class RedisSettings(BaseSettings):
+class RedisSettings(BaseModel):
     """Redis cache configuration."""
 
     host: str = "localhost"
@@ -108,13 +108,13 @@ class RedisSettings(BaseSettings):
         return f"redis://{auth}{self.host}:{self.port}/{self.db}"
 
 
-class CatalogSettings(BaseSettings):
+class CatalogSettings(BaseModel):
     """Source catalog database configuration."""
 
     database_path: str = "data/catalog.db"
 
 
-class GoogleDriveSettings(BaseSettings):
+class GoogleDriveSettings(BaseModel):
     """Google Drive integration configuration."""
 
     credentials_file: str = "configs/gdrive_credentials.json"
@@ -125,7 +125,7 @@ class GoogleDriveSettings(BaseSettings):
     )
 
 
-class Neo4jSettings(BaseSettings):
+class Neo4jSettings(BaseModel):
     """Neo4j knowledge graph configuration."""
 
     url: str = "bolt://localhost:7687"
@@ -134,7 +134,7 @@ class Neo4jSettings(BaseSettings):
     database: str = "knowledgehub"
 
 
-class BooksSettings(BaseSettings):
+class BooksSettings(BaseModel):
     """Book library configuration."""
 
     storage_dir: str = "/opt/document-store/books/"

@@ -18,7 +18,6 @@ server:
 google_drive:
   credentials_file: "configs/gdrive_credentials.json"
   token_file: "data/gdrive_token.json"
-  folder_id: ""
 
 books:
   storage_dir: "data/books/"
