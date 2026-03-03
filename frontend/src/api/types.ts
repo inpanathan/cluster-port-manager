@@ -221,6 +221,28 @@ export interface BookSummary {
   cover_image_path: string;
   tags: string[];
   embedding_status: string;
+  chunk_count?: number;
+}
+
+export interface BookEmbedRequest {
+  force?: boolean;
+}
+
+export interface BookEmbedResponse {
+  book_id: string;
+  chunk_count: number;
+  total_tokens: number;
+  duration_ms: number;
+  validation_passed: boolean;
+  skipped: boolean;
+  error: string;
+}
+
+export interface BookProcessingStatus {
+  embedding_status: string;
+  graph_status: string;
+  chunk_count: number | null;
+  source_id: string | null;
 }
 
 export interface BookDetail {
@@ -257,4 +279,85 @@ export interface BookUpdateRequest {
   author?: string;
   tags?: string[];
   description?: string;
+}
+
+// ---------- Knowledge Graph ----------
+
+export interface GraphNode {
+  id: string;
+  label: string;
+  name: string;
+  type: string;
+  properties: Record<string, unknown>;
+  connections_count: number;
+}
+
+export interface GraphEdge {
+  source: string;
+  target: string;
+  relationship: string;
+}
+
+export interface GraphSearchResult {
+  id: string;
+  label: string;
+  name: string;
+  type: string;
+  properties: Record<string, unknown>;
+  connections_count: number;
+  relevance_score: number;
+}
+
+export interface GraphSearchResponse {
+  results: GraphSearchResult[];
+  total: number;
+}
+
+export interface GraphNeighborhoodResponse {
+  center_node: GraphNode;
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+}
+
+export interface GraphPathResponse {
+  found: boolean;
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  length: number;
+}
+
+export interface BookEntitiesResponse {
+  book_id: string;
+  entities: GraphNode[];
+  total: number;
+}
+
+export interface RelatedBook {
+  book_id: string;
+  title: string;
+  author: string;
+  shared_entity_count: number;
+  shared_topic_count: number;
+}
+
+export interface RelatedBooksResponse {
+  book_id: string;
+  related: RelatedBook[];
+}
+
+export interface TopicTreeNode {
+  name: string;
+  description: string;
+  children: TopicTreeNode[];
+}
+
+export interface TopicTaxonomyResponse {
+  topics: TopicTreeNode[];
+}
+
+export interface GraphStatsResponse {
+  node_counts: Record<string, number>;
+  relationship_counts: Record<string, number>;
+  total_nodes: number;
+  total_relationships: number;
 }

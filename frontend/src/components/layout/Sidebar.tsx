@@ -7,6 +7,7 @@ import {
   HelpCircle,
   GraduationCap,
   BookOpen,
+  Network,
   Sun,
   Moon,
   PanelLeftClose,
@@ -24,6 +25,7 @@ const NAV_ITEMS = [
   { to: "/qna", icon: HelpCircle, label: "Q&A" },
   { to: "/interview", icon: GraduationCap, label: "Interview" },
   { to: "/library", icon: BookOpen, label: "Library" },
+  { to: "/graph", icon: Network, label: "Graph" },
 ];
 
 export function Sidebar() {

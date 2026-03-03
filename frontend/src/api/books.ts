@@ -1,5 +1,12 @@
 import { request } from "./client";
-import type { BookDetail, BookListResponse, BookUpdateRequest } from "./types";
+import type {
+  BookDetail,
+  BookEmbedRequest,
+  BookEmbedResponse,
+  BookListResponse,
+  BookProcessingStatus,
+  BookUpdateRequest,
+} from "./types";
 
 export function listBooks(params?: {
   author?: string;
@@ -41,4 +48,16 @@ export function getBookDownloadUrl(id: string): string {
 
 export function getBookCoverUrl(id: string): string {
   return `/api/v1/books/${id}/cover`;
+}
+
+export function embedBook(bookId: string, force?: boolean): Promise<BookEmbedResponse> {
+  const body: BookEmbedRequest = force !== undefined ? { force } : {};
+  return request<BookEmbedResponse>(`/books/${bookId}/embed`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+}
+
+export function getBookStatus(bookId: string): Promise<BookProcessingStatus> {
+  return request<BookProcessingStatus>(`/books/${bookId}/status`);
 }

@@ -22,6 +22,26 @@ if [[ -f ".env" ]]; then
     set +a
 fi
 
+SKIP_EMBED=false
+SKIP_GRAPH=false
+
+# Parse flags
+POSITIONAL=()
+for arg in "$@"; do
+    case "$arg" in
+        --skip-embed)
+            SKIP_EMBED=true
+            ;;
+        --skip-graph)
+            SKIP_GRAPH=true
+            ;;
+        *)
+            POSITIONAL+=("$arg")
+            ;;
+    esac
+done
+set -- "${POSITIONAL[@]}"
+
 case "${1:-run}" in
     status)
         echo "=== Book Library Status ==="
@@ -43,13 +63,30 @@ print(f'  Embeddings done:    {completed}')
         uv run python scripts/download_books.py --dry-run
         ;;
     run)
-        echo "=== Downloading books from Google Drive ==="
+        echo "=== Step 1: Downloading books from Google Drive ==="
         uv run python scripts/download_books.py "${@:2}"
         echo ""
-        echo "=== Download complete. Run 'bash scripts/seed_books.sh status' to verify. ==="
+
+        if [[ "$SKIP_EMBED" == "false" ]]; then
+            echo "=== Step 2: Embedding books ==="
+            uv run python scripts/process_books.py
+            echo ""
+        else
+            echo "=== Skipping embedding (--skip-embed) ==="
+        fi
+
+        if [[ "$SKIP_GRAPH" == "false" && "$SKIP_EMBED" == "false" ]]; then
+            echo "=== Step 3: Building knowledge graph ==="
+            uv run python scripts/build_knowledge_graph.py
+            echo ""
+        else
+            echo "=== Skipping graph (--skip-graph or --skip-embed) ==="
+        fi
+
+        echo "=== Seeding complete. Run 'bash scripts/seed_books.sh status' to verify. ==="
         ;;
     *)
-        echo "Usage: $0 {run|--dry-run|status}"
+        echo "Usage: $0 {run|--dry-run|status} [--skip-embed] [--skip-graph]"
         exit 1
         ;;
 esac

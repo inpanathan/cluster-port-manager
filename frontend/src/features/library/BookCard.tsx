@@ -1,4 +1,4 @@
-import { MoreVertical, Download, Trash2, BookOpen } from "lucide-react";
+import { MoreVertical, Download, Trash2, BookOpen, Loader2 } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -97,9 +97,19 @@ export function BookCard({ book, onClick }: BookCardProps) {
           {book.publication_year && <span>{book.publication_year}</span>}
           {book.publication_year && <span>&middot;</span>}
           <div className="flex items-center gap-1">
-            <div className={`h-1.5 w-1.5 rounded-full ${statusColors[book.embedding_status] ?? "bg-gray-400"}`} />
+            {book.embedding_status === "processing" ? (
+              <Loader2 className="h-3 w-3 animate-spin" />
+            ) : (
+              <div className={`h-1.5 w-1.5 rounded-full ${statusColors[book.embedding_status] ?? "bg-gray-400"}`} />
+            )}
             <span className="capitalize">{book.embedding_status}</span>
           </div>
+          {book.embedding_status === "completed" && book.chunk_count != null && (
+            <>
+              <span>&middot;</span>
+              <span>{book.chunk_count} chunks</span>
+            </>
+          )}
         </div>
 
         {book.tags.length > 0 && (

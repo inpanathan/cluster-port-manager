@@ -114,6 +114,7 @@ class ChatRequest(BaseModel):
     message: str
     session_id: str | None = None
     source_ids: list[str] | None = None
+    include_books: bool = True
 
 
 class CitationResponse(BaseModel):
@@ -335,3 +336,124 @@ class BookUpdateRequest(BaseModel):
     author: str | None = None
     tags: list[str] | None = None
     description: str | None = None
+
+
+class BookEmbedRequest(BaseModel):
+    """Request to trigger embedding for a book."""
+
+    force: bool = False
+
+
+class BookEmbedResponse(BaseModel):
+    """Response from the book embedding endpoint."""
+
+    book_id: str
+    chunk_count: int = 0
+    total_tokens: int = 0
+    duration_ms: int = 0
+    validation_passed: bool = False
+    skipped: bool = False
+    error: str = ""
+
+
+class BookProcessingStatusResponse(BaseModel):
+    """Processing status of a book."""
+
+    embedding_status: str
+    graph_status: str
+    chunk_count: int | None = None
+    source_id: str | None = None
+
+
+# ---------- Knowledge Graph ----------
+
+
+class GraphNodeResponse(BaseModel):
+    """A node in the knowledge graph."""
+
+    id: str
+    label: str
+    name: str
+    type: str = ""
+    properties: dict = Field(default_factory=dict)
+    connections_count: int = 0
+
+
+class GraphEdgeResponse(BaseModel):
+    """An edge in the knowledge graph."""
+
+    source: str
+    target: str
+    relationship: str
+    properties: dict = Field(default_factory=dict)
+
+
+class GraphSearchResponse(BaseModel):
+    """Search results from the knowledge graph."""
+
+    results: list[dict] = Field(default_factory=list)
+    total: int = 0
+
+
+class GraphNeighborhoodResponse(BaseModel):
+    """Entity with its neighborhood."""
+
+    center_node: GraphNodeResponse
+    nodes: list[GraphNodeResponse] = Field(default_factory=list)
+    edges: list[GraphEdgeResponse] = Field(default_factory=list)
+
+
+class GraphPathResponse(BaseModel):
+    """Path between two entities."""
+
+    nodes: list[GraphNodeResponse] = Field(default_factory=list)
+    edges: list[GraphEdgeResponse] = Field(default_factory=list)
+    length: int = 0
+    found: bool = True
+
+
+class BookEntitiesResponse(BaseModel):
+    """Entities from a specific book."""
+
+    book_id: str
+    entities: list[GraphNodeResponse] = Field(default_factory=list)
+    total: int = 0
+
+
+class RelatedBooksResponse(BaseModel):
+    """Books related to a given book."""
+
+    book_id: str
+    related: list[dict] = Field(default_factory=list)
+
+
+class TopicTaxonomyResponse(BaseModel):
+    """Hierarchical topic structure."""
+
+    topics: list[dict] = Field(default_factory=list)
+
+
+class GraphStatsResponse(BaseModel):
+    """Knowledge graph statistics."""
+
+    node_counts: dict[str, int] = Field(default_factory=dict)
+    relationship_counts: dict[str, int] = Field(default_factory=dict)
+    total_nodes: int = 0
+    total_relationships: int = 0
+
+
+class GraphBuildRequest(BaseModel):
+    """Request to build a knowledge graph for a book."""
+
+    force: bool = False
+
+
+class GraphBuildResponse(BaseModel):
+    """Response from graph build."""
+
+    book_id: str
+    entity_count: int = 0
+    relationship_count: int = 0
+    topic_count: int = 0
+    duration_ms: int = 0
+    error: str = ""

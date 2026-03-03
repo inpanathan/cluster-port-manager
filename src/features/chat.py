@@ -105,6 +105,7 @@ class ChatService:
         message: str,
         *,
         source_ids: list[str] | None = None,
+        include_books: bool = True,
     ) -> tuple[str, ChatMessage]:
         """Send a message and get a RAG-powered response.
 
@@ -133,6 +134,7 @@ class ChatService:
             message,
             source_ids=effective_source_ids,
             chat_history=history if history else None,
+            include_books=include_books,
         )
 
         # Add assistant message

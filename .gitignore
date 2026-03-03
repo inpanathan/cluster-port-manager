@@ -44,6 +44,13 @@ data/uploads/
 
 # Qdrant persistent storage (runtime, not tracked)
 data/qdrant_storage/
+data/vectorstore/
+
+# SQLite databases (runtime, not tracked)
+data/catalog.db
+
+# Book originals (runtime, not tracked)
+data/originals/
 
 # Terminal recordings
 typescript

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Download, Trash2, Save } from "lucide-react";
+import { Download, Trash2, Save, Sparkles, Loader2, Network } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -14,7 +15,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getBook, updateBook, deleteBook, getBookDownloadUrl, getBookCoverUrl } from "@/api/books";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { getBook, updateBook, deleteBook, embedBook, getBookDownloadUrl, getBookCoverUrl } from "@/api/books";
+import { getBookEntities, getRelatedBooks } from "@/api/graph";
 
 interface BookDetailProps {
   bookId: string | null;
@@ -30,11 +33,24 @@ function formatBytes(bytes: number): string {
 
 export function BookDetail({ bookId, open, onOpenChange }: BookDetailProps) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data: book, isLoading } = useQuery({
     queryKey: ["book", bookId],
     queryFn: () => getBook(bookId!),
     enabled: !!bookId,
+  });
+
+  const { data: bookEntities } = useQuery({
+    queryKey: ["book-entities", bookId],
+    queryFn: () => getBookEntities(bookId!),
+    enabled: !!bookId && book?.graph_status === "completed",
+  });
+
+  const { data: relatedBooks } = useQuery({
+    queryKey: ["related-books", bookId],
+    queryFn: () => getRelatedBooks(bookId!),
+    enabled: !!bookId && book?.graph_status === "completed",
   });
 
   const [title, setTitle] = useState("");
@@ -65,6 +81,14 @@ export function BookDetail({ bookId, open, onOpenChange }: BookDetailProps) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["books"] });
       onOpenChange(false);
+    },
+  });
+
+  const embedMutation = useMutation({
+    mutationFn: (force: boolean) => embedBook(bookId!, force),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["books"] });
+      queryClient.invalidateQueries({ queryKey: ["book", bookId] });
     },
   });
 
@@ -208,10 +232,81 @@ export function BookDetail({ bookId, open, onOpenChange }: BookDetailProps) {
                 </Badge>
               </div>
               <div className="flex justify-between">
+                <span className="text-muted-foreground">Knowledge Graph</span>
+                <Badge variant={book.graph_status === "completed" ? "default" : "secondary"}>
+                  {book.graph_status}
+                </Badge>
+              </div>
+              {book.embedding_status === "completed" && book.source_id && (
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Source ID</span>
+                  <span className="max-w-[200px] truncate text-right font-mono text-xs">
+                    {book.source_id}
+                  </span>
+                </div>
+              )}
+              <div className="flex justify-between">
                 <span className="text-muted-foreground">Added</span>
                 <span>{new Date(book.created_at).toLocaleDateString()}</span>
               </div>
             </div>
+
+            {/* Knowledge Graph Entities */}
+            {bookEntities && bookEntities.entities.length > 0 && (
+              <>
+                <Separator />
+                <div>
+                  <div className="mb-2 flex items-center justify-between">
+                    <h4 className="text-sm font-medium">
+                      Entities ({bookEntities.total})
+                    </h4>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => navigate("/graph")}
+                    >
+                      <Network className="mr-1 h-3 w-3" />
+                      Explore Graph
+                    </Button>
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    {bookEntities.entities.slice(0, 20).map((entity) => (
+                      <Badge key={entity.id} variant="outline" className="text-xs">
+                        {entity.name}
+                      </Badge>
+                    ))}
+                    {bookEntities.entities.length > 20 && (
+                      <Badge variant="secondary" className="text-xs">
+                        +{bookEntities.entities.length - 20}
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Related Books */}
+            {relatedBooks && relatedBooks.related.length > 0 && (
+              <>
+                <Separator />
+                <div>
+                  <h4 className="mb-2 text-sm font-medium">Related Books</h4>
+                  <div className="space-y-1">
+                    {relatedBooks.related.map((rel) => (
+                      <div
+                        key={rel.book_id}
+                        className="flex items-center justify-between text-sm"
+                      >
+                        <span className="truncate">{rel.title}</span>
+                        <Badge variant="outline" className="shrink-0 text-[10px]">
+                          {rel.shared_entity_count} shared
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
 
             {/* Table of Contents */}
             {book.table_of_contents.length > 0 && (
@@ -234,8 +329,54 @@ export function BookDetail({ bookId, open, onOpenChange }: BookDetailProps) {
 
             <Separator />
 
+            {/* Embedding error */}
+            {book.embedding_status === "failed" && (
+              <Alert variant="destructive">
+                <AlertDescription>
+                  Embedding failed. Try re-embedding the book below.
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {/* Embed result feedback */}
+            {embedMutation.isSuccess && embedMutation.data && (
+              <Alert>
+                <AlertDescription>
+                  {embedMutation.data.skipped
+                    ? "Already embedded — no changes made."
+                    : `Embedded successfully: ${embedMutation.data.chunk_count} chunks, ${embedMutation.data.total_tokens.toLocaleString()} tokens.`}
+                </AlertDescription>
+              </Alert>
+            )}
+
             {/* Actions */}
             <div className="flex flex-col gap-2">
+              {book.embedding_status !== "completed" ? (
+                <Button
+                  onClick={() => embedMutation.mutate(false)}
+                  disabled={embedMutation.isPending}
+                >
+                  {embedMutation.isPending ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <Sparkles className="mr-2 h-4 w-4" />
+                  )}
+                  {embedMutation.isPending ? "Embedding..." : "Embed Book"}
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  onClick={() => embedMutation.mutate(true)}
+                  disabled={embedMutation.isPending}
+                >
+                  {embedMutation.isPending ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <Sparkles className="mr-2 h-4 w-4" />
+                  )}
+                  {embedMutation.isPending ? "Re-embedding..." : "Re-embed Book"}
+                </Button>
+              )}
               <Button variant="outline" asChild>
                 <a href={getBookDownloadUrl(book.id)} download>
                   <Download className="mr-2 h-4 w-4" />

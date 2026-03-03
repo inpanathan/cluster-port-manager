@@ -12,19 +12,24 @@ from fastapi import APIRouter, Depends, Form, UploadFile
 from fastapi.responses import Response
 
 from src.api.dependencies import (
+    get_book_embedding,
     get_books,
     get_catalog,
     get_chat,
     get_file_store,
     get_ingestion,
     get_interview,
+    get_knowledge_graph_service,
     get_qna,
     get_summarization,
     get_vector_store,
 )
 from src.api.schemas import (
     BookDetailResponse,
+    BookEmbedRequest,
+    BookEmbedResponse,
     BookListApiResponse,
+    BookProcessingStatusResponse,
     BookSummaryResponse,
     BookUpdateRequest,
     ChatMessageResponse,
@@ -63,9 +68,11 @@ from src.data.ingestion import IngestionPipeline
 from src.features.chat import ChatService
 from src.features.interview import DifficultyLevel as InterviewDifficulty
 from src.features.interview import InterviewMode, InterviewService
+from src.features.knowledge_graph.service import KnowledgeGraphService
 from src.features.qna import DifficultyLevel as QnADifficulty
 from src.features.qna import QnAService
 from src.features.summarization import SummarizationService, SummaryMode
+from src.pipelines.book_embedding import BookEmbeddingPipeline
 from src.utils.errors import AppError, ErrorCode
 from src.utils.vector_store import VectorStore
 
@@ -353,6 +360,7 @@ async def chat(
         body.session_id,
         body.message,
         source_ids=body.source_ids,
+        include_books=body.include_books,
     )
     return ChatResponse(
         session_id=session_id,
@@ -747,9 +755,12 @@ async def update_book(
 async def delete_book(
     book_id: str,
     books: Annotated[BookService, Depends(get_books)],
+    vector_store: Annotated[VectorStore, Depends(get_vector_store)],
 ) -> None:
-    """Delete a book and its file."""
+    """Delete a book, its file, and its vectors."""
     from pathlib import Path as _Path
+
+    from src.utils.config import settings as _settings
 
     book = books.get_book(book_id)
     # Clean up files
@@ -757,6 +768,8 @@ async def delete_book(
         _Path(book.file_path).unlink(missing_ok=True)
     if book.cover_image_path:
         _Path(book.cover_image_path).unlink(missing_ok=True)
+    # Clean up vectors from books collection
+    vector_store.delete_book_vectors(_settings.books.qdrant_collection, book_id)
     books.delete_book(book_id)
 
 
@@ -841,3 +854,220 @@ async def get_book_cover(
     cover_bytes = cover_path.read_bytes()
     content_type = mimetypes.guess_type(cover_path.name)[0] or "image/jpeg"
     return Response(content=cover_bytes, media_type=content_type)
+
+
+@router.post("/books/{book_id}/embed", response_model=BookEmbedResponse)
+async def embed_book(
+    book_id: str,
+    body: BookEmbedRequest,
+    pipeline: Annotated[BookEmbeddingPipeline, Depends(get_book_embedding)],
+) -> BookEmbedResponse:
+    """Trigger embedding for a single book."""
+    result = pipeline.process_book(book_id, force=body.force)
+    return BookEmbedResponse(
+        book_id=result.book_id,
+        chunk_count=result.chunk_count,
+        total_tokens=result.total_tokens,
+        duration_ms=result.duration_ms,
+        validation_passed=result.validation_passed,
+        skipped=result.skipped,
+        error=result.error,
+    )
+
+
+@router.get("/books/{book_id}/status", response_model=BookProcessingStatusResponse)
+async def get_book_status(
+    book_id: str,
+    books: Annotated[BookService, Depends(get_books)],
+    vector_store: Annotated[VectorStore, Depends(get_vector_store)],
+) -> BookProcessingStatusResponse:
+    """Get the processing status of a book."""
+    from src.utils.config import settings as _settings
+
+    book = books.get_book(book_id)
+    chunk_count = None
+    if book.embedding_status == "completed":
+        chunk_count = vector_store.count_collection(_settings.books.qdrant_collection)
+    return BookProcessingStatusResponse(
+        embedding_status=book.embedding_status,
+        graph_status=book.graph_status,
+        chunk_count=chunk_count,
+        source_id=book.source_id,
+    )
+
+
+# ── Knowledge Graph ──────────────────────────────────────────────────────
+
+
+@router.get("/graph/search")
+async def search_graph(
+    q: str,
+    kg_service: Annotated[
+        KnowledgeGraphService,
+        Depends(get_knowledge_graph_service),
+    ],
+    type: str | None = None,
+    limit: int = 20,
+) -> dict:
+    """Search entities in the knowledge graph."""
+    results = kg_service.search_entities(q, entity_type=type, limit=limit)
+    return {
+        "results": [
+            {
+                "id": r.node.id,
+                "label": r.node.label,
+                "name": r.node.name,
+                "type": r.node.type,
+                "properties": r.node.properties,
+                "connections_count": r.node.connections_count,
+                "relevance_score": r.relevance_score,
+            }
+            for r in results
+        ],
+        "total": len(results),
+    }
+
+
+@router.get("/graph/entity/{entity_id}")
+async def get_graph_entity(
+    entity_id: str,
+    kg_service: Annotated[
+        KnowledgeGraphService,
+        Depends(get_knowledge_graph_service),
+    ],
+    depth: int = 1,
+) -> dict:
+    """Get an entity and its neighborhood."""
+    neighborhood = kg_service.get_entity(entity_id, depth=depth)
+    return {
+        "center_node": {
+            "id": neighborhood.center_node.id,
+            "label": neighborhood.center_node.label,
+            "name": neighborhood.center_node.name,
+            "type": neighborhood.center_node.type,
+            "properties": neighborhood.center_node.properties,
+        },
+        "nodes": [
+            {
+                "id": n.id,
+                "label": n.label,
+                "name": n.name,
+                "type": n.type,
+                "properties": n.properties,
+                "connections_count": n.connections_count,
+            }
+            for n in neighborhood.nodes
+        ],
+        "edges": [
+            {"source": e.source, "target": e.target, "relationship": e.relationship}
+            for e in neighborhood.edges
+        ],
+    }
+
+
+@router.get("/graph/entity/{entity_id}/path/{target_id}")
+async def find_graph_path(
+    entity_id: str,
+    target_id: str,
+    kg_service: Annotated[
+        KnowledgeGraphService,
+        Depends(get_knowledge_graph_service),
+    ],
+    max_depth: int = 5,
+) -> dict:
+    """Find the shortest path between two entities."""
+    path = kg_service.find_path(entity_id, target_id, max_depth=max_depth)
+    if path is None:
+        return {"found": False, "nodes": [], "edges": [], "length": 0}
+    return {
+        "found": True,
+        "nodes": [
+            {"id": n.id, "label": n.label, "name": n.name, "type": n.type} for n in path.nodes
+        ],
+        "edges": [
+            {"source": e.source, "target": e.target, "relationship": e.relationship}
+            for e in path.edges
+        ],
+        "length": path.length,
+    }
+
+
+@router.get("/graph/book/{book_id}/entities")
+async def get_book_graph_entities(
+    book_id: str,
+    kg_service: Annotated[
+        KnowledgeGraphService,
+        Depends(get_knowledge_graph_service),
+    ],
+) -> dict:
+    """Get all entities from a specific book's graph."""
+    entities = kg_service.get_book_entities(book_id)
+    return {
+        "book_id": book_id,
+        "entities": [
+            {
+                "id": e.id,
+                "label": e.label,
+                "name": e.name,
+                "type": e.type,
+                "properties": e.properties,
+                "connections_count": e.connections_count,
+            }
+            for e in entities
+        ],
+        "total": len(entities),
+    }
+
+
+@router.get("/graph/book/{book_id}/related")
+async def get_related_books_graph(
+    book_id: str,
+    kg_service: Annotated[
+        KnowledgeGraphService,
+        Depends(get_knowledge_graph_service),
+    ],
+) -> dict:
+    """Get books related via shared entities."""
+    related = kg_service.get_related_books(book_id)
+    return {
+        "book_id": book_id,
+        "related": [
+            {
+                "book_id": r.book_id,
+                "title": r.title,
+                "author": r.author,
+                "shared_entity_count": r.shared_entity_count,
+                "shared_topic_count": r.shared_topic_count,
+            }
+            for r in related
+        ],
+    }
+
+
+@router.get("/graph/topics")
+async def get_topic_taxonomy(
+    kg_service: Annotated[
+        KnowledgeGraphService,
+        Depends(get_knowledge_graph_service),
+    ],
+) -> dict:
+    """Get the hierarchical topic structure."""
+    topics = kg_service.get_topic_taxonomy()
+    return {"topics": [t.model_dump() for t in topics]}
+
+
+@router.get("/graph/stats")
+async def get_graph_stats(
+    kg_service: Annotated[
+        KnowledgeGraphService,
+        Depends(get_knowledge_graph_service),
+    ],
+) -> dict:
+    """Get knowledge graph statistics."""
+    stats = kg_service.get_stats()
+    return {
+        "node_counts": stats.node_counts,
+        "relationship_counts": stats.relationship_counts,
+        "total_nodes": stats.total_nodes,
+        "total_relationships": stats.total_relationships,
+    }

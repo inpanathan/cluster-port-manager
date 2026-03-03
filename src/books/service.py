@@ -155,3 +155,23 @@ class BookService:
             embedding_status=EmbeddingStatus.FAILED.value,
         )
         logger.warning("book_embedding_failed", book_id=book_id, error=error)
+
+    def mark_graph_started(self, book_id: str) -> None:
+        """Mark a book's graph construction as in progress."""
+        from src.books.models import GraphStatus
+
+        self._repo.update(book_id, graph_status=GraphStatus.PROCESSING.value)
+
+    def mark_graph_completed(self, book_id: str, *, entity_count: int) -> None:
+        """Mark a book's knowledge graph as completed."""
+        from src.books.models import GraphStatus
+
+        self._repo.update(book_id, graph_status=GraphStatus.COMPLETED.value)
+        logger.info("book_graph_completed", book_id=book_id, entity_count=entity_count)
+
+    def mark_graph_failed(self, book_id: str, *, error: str) -> None:
+        """Mark a book's graph construction as failed."""
+        from src.books.models import GraphStatus
+
+        self._repo.update(book_id, graph_status=GraphStatus.FAILED.value)
+        logger.warning("book_graph_failed", book_id=book_id, error=error)

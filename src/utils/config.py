@@ -125,6 +125,15 @@ class GoogleDriveSettings(BaseSettings):
     )
 
 
+class Neo4jSettings(BaseSettings):
+    """Neo4j knowledge graph configuration."""
+
+    url: str = "bolt://localhost:7687"
+    user: str = "neo4j"
+    password: str = ""
+    database: str = "knowledgehub"
+
+
 class BooksSettings(BaseSettings):
     """Book library configuration."""
 
@@ -174,6 +183,7 @@ class Settings(BaseSettings):
     catalog: CatalogSettings = Field(default_factory=CatalogSettings)
     google_drive: GoogleDriveSettings = Field(default_factory=GoogleDriveSettings)
     books: BooksSettings = Field(default_factory=BooksSettings)
+    neo4j: Neo4jSettings = Field(default_factory=Neo4jSettings)
 
     @field_validator("app_env")
     @classmethod

@@ -14,6 +14,7 @@
 | `http://localhost:8000/docs` | Swagger/OpenAPI docs |
 | `http://localhost:8000/redoc` | ReDoc API docs |
 | `http://localhost:3000/library` | Library page (book collection) |
+| `http://localhost:3000/graph` | Knowledge graph explorer |
 
 ### Dev Login Credentials
 
@@ -77,6 +78,15 @@ Seeded by `bash scripts/db_seed.sh`. Password for all accounts: `<!-- TODO: fill
 | `DELETE` | `/books/{id}` | Delete book and associated files |
 | `GET` | `/books/{id}/download` | Download the book file |
 | `GET` | `/books/{id}/cover` | Serve the book cover image |
+| `POST` | `/books/{id}/embed` | Trigger embedding for a single book |
+| `GET` | `/books/{id}/status` | Get book processing status (embedding, graph) |
+| `GET` | `/graph/search?q=&type=&limit=20` | Search entities in the knowledge graph |
+| `GET` | `/graph/entity/{id}?depth=1` | Get entity and its N-hop neighborhood |
+| `GET` | `/graph/entity/{id}/path/{target_id}?max_depth=5` | Find shortest path between entities |
+| `GET` | `/graph/book/{id}/entities` | Get all entities from a book's graph |
+| `GET` | `/graph/book/{id}/related` | Get books related via shared entities |
+| `GET` | `/graph/topics` | Get hierarchical topic taxonomy |
+| `GET` | `/graph/stats` | Get knowledge graph statistics |
 
 ## Commands
 
@@ -122,6 +132,10 @@ uv run pytest tests/ --cov=src --cov-report=html
 | `BOOKS__STORAGE_DIR` | `/opt/document-store/books/` | Book file storage directory |
 | `BOOKS__COVERS_DIR` | `/opt/document-store/covers/` | Book cover image directory |
 | `BOOKS__DATABASE_PATH` | `data/catalog.db` | SQLite database for book catalog |
+| `NEO4J__URL` | `bolt://localhost:7687` | Neo4j Bolt connection URL |
+| `NEO4J__USER` | `neo4j` | Neo4j username |
+| `NEO4J__PASSWORD` | — | Neo4j password |
+| `NEO4J__DATABASE` | `knowledgehub` | Neo4j database name |
 
 ## Monitoring
 
@@ -150,6 +164,12 @@ uv run pytest tests/ --cov=src --cov-report=html
 | `scripts/seed_books.sh` | Book seeding orchestrator |
 | `scripts/start_vllm.sh` | Start/stop vLLM inference server |
 | `scripts/start_qdrant.sh` | Start/stop Qdrant vector database |
+| `scripts/start_neo4j.sh` | Start/stop Neo4j graph database |
+| `scripts/build_knowledge_graph.py` | Build knowledge graph from embedded books |
+| `src/features/knowledge_graph/` | Knowledge graph models, service, entity resolution |
+| `src/pipelines/knowledge_graph.py` | Knowledge graph construction pipeline |
+| `src/utils/graph_store.py` | Neo4j/mock graph store abstraction |
+| `src/models/graph_extractor.py` | LLM-based entity extraction |
 
 ## Scripts
 
@@ -250,6 +270,37 @@ bash scripts/start_qdrant.sh stop
 bash scripts/start_qdrant.sh status
 ```
 
+### Neo4j Knowledge Graph
+
+```bash
+# Install graph dependencies
+uv sync --extra dev --extra graph
+
+# Start Neo4j (Docker, ports 7474/7687)
+bash scripts/start_neo4j.sh
+
+# Stop Neo4j
+bash scripts/start_neo4j.sh stop
+
+# Check Neo4j status
+bash scripts/start_neo4j.sh status
+
+# Build knowledge graph for all books
+uv run python scripts/build_knowledge_graph.py
+
+# Build for a specific book
+uv run python scripts/build_knowledge_graph.py --book-id <BOOK_ID>
+
+# Force rebuild (deletes existing graph first)
+uv run python scripts/build_knowledge_graph.py --force
+
+# Dry run (show what would be built)
+uv run python scripts/build_knowledge_graph.py --dry-run
+
+# Neo4j browser UI
+# http://localhost:7474 (user: neo4j, password from NEO4J__PASSWORD)
+```
+
 ### Book Library
 
 ```bash
@@ -264,6 +315,28 @@ bash scripts/seed_books.sh
 
 # Check book library status (counts)
 bash scripts/seed_books.sh status
+```
+
+### Book Embedding Pipeline
+
+```bash
+# Process all pending books into vector embeddings
+uv run python scripts/process_books.py
+
+# Process a single book
+uv run python scripts/process_books.py --book-id <ID>
+
+# Re-process completed books
+uv run python scripts/process_books.py --force
+
+# Preview what would be processed
+uv run python scripts/process_books.py --dry-run
+
+# Full seeding (download + embed)
+bash scripts/seed_books.sh
+
+# Seed without embedding step
+bash scripts/seed_books.sh --skip-embed
 ```
 
 ### Data & Models
@@ -321,10 +394,11 @@ bash scripts/setup.sh
 #    (setup.sh creates .env from .env.example — edit the MODEL_BACKEND line)
 
 # 3. Install ML + optional dependencies
-uv sync --extra dev --extra ml
+uv sync --extra dev --extra ml --extra graph
 
 # 4. Start infrastructure services
 bash scripts/start_qdrant.sh         # Start Qdrant (Docker)
+bash scripts/start_neo4j.sh          # Start Neo4j (Docker)
 
 # 5. Start vLLM inference server (separate terminal)
 bash scripts/start_vllm.sh           # Serves Qwen2.5-14B-Instruct on port 8000

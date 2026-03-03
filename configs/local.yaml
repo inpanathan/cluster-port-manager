@@ -33,3 +33,9 @@ books:
   storage_dir: "/opt/document-store/books/"
   covers_dir: "/opt/document-store/covers/"
   database_path: "data/catalog.db"
+
+neo4j:
+  url: "bolt://localhost:7687"
+  user: "neo4j"
+  password: ""
+  database: "knowledgehub"

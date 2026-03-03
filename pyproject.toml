@@ -40,6 +40,9 @@ books = [
     "google-auth-httplib2>=0.2.0",
     "ebooklib>=0.18",
 ]
+graph = [
+    "neo4j>=5.18.0",
+]
 cloud = [
     "google-api-python-client>=2.150.0",
     "google-auth-oauthlib>=1.2.0",
