@@ -1,0 +1,695 @@
+{
+  "REQ-ALLOC-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Provide portman alloc <service-name> to allocate the next available port for a service",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-ALLOC-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Support requesting a specific port with --port flag; fail if already allocated",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-ALLOC-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Support requesting a port within a range with --range flag; allocate lowest available",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-ALLOC-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Support allocating multiple ports at once with --count flag",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-ALLOC-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Support port type/category hints with --type flag to pick from appropriate default range",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-ALLOC-006": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Record every allocation with port, protocol, service, project, category, timestamp, allocated_by, and description",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-ALLOC-007": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Validate that requested port is not in use by another process (live check) before confirming allocation",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-ALLOC-008": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 2: Port Allocation",
+    "summary": "Return allocation results in human-readable and machine-readable formats (--format json|table|plain)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CLI-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 7: CLI Interface",
+    "summary": "CLI entry point is portman, installed via pyproject.toml scripts section",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CLI-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 7: CLI Interface",
+    "summary": "Top-level commands: init, scan, alloc, release, reserve, list, info, search, conflicts, check, gc, export, import, config, serve",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CLI-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 7: CLI Interface",
+    "summary": "Use typer for CLI framework with type-hint-driven commands",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CLI-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 7: CLI Interface",
+    "summary": "Support --verbose / -v flag globally for debug output",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CLI-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 7: CLI Interface",
+    "summary": "Support --quiet / -q flag globally for minimal output suitable for scripting",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CLI-006": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 7: CLI Interface",
+    "summary": "All destructive commands require confirmation unless --yes / -y is passed",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CLI-007": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 7: CLI Interface",
+    "summary": "Provide shell completion support for bash, zsh, fish via --install-completion",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CONF-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 5: Conflict Detection and Prevention",
+    "summary": "Before any allocation, check registry for existing assignments on same port+protocol",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CONF-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 5: Conflict Detection and Prevention",
+    "summary": "Before any allocation, perform live port probe to detect if port is bound by any process",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CONF-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 5: Conflict Detection and Prevention",
+    "summary": "Provide portman conflicts to report all current conflicts (registry dupes, registry vs live, cross-project)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CONF-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 5: Conflict Detection and Prevention",
+    "summary": "On portman scan, automatically flag and highlight conflicts found across scanned projects",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-CONF-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 5: Conflict Detection and Prevention",
+    "summary": "Suggest alternative ports when conflict detected, picking nearest available in same category range",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Provide portman daemon start (foreground) and portman daemon install (systemd user service)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Daemon exposes Unix domain socket at ~/.portman/portmand.sock for local IPC; CLI/SDK use daemon when running, fallback to direct DB",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Daemon exposes HTTP API on 127.0.0.1:9800 mirroring REST endpoints for language-agnostic access",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Daemon accepts allocation requests from services at startup; primary runtime allocation path",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Daemon performs periodic health checks (default 60s) probing all registered ports, updating status",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-006": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Daemon emits structured log events to ~/.portman/portmand.log with rotation (10MB, 3 backups)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-007": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Provide portman daemon stop and portman daemon status commands",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-008": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Provide portman daemon uninstall to remove systemd service",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-009": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Daemon performs initial full scan on startup if registry is empty",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-DMN-010": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 10: System Daemon",
+    "summary": "Daemon handles concurrent requests safely using async I/O; no duplicate port allocations",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-INT-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 9: Service Integration",
+    "summary": "Provide helper script/shell function for services to call at startup for port allocation",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-INT-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 9: Service Integration",
+    "summary": "Provide Python SDK / importable module for programmatic port allocation",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-INT-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 9: Service Integration",
+    "summary": "Support .env file generation with portman env <service-name>",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-INT-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 9: Service Integration",
+    "summary": "Support .portman.yaml manifest for declaring port requirements and bulk allocation",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-INT-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 9: Service Integration",
+    "summary": "Provide curl-friendly allocation endpoint for non-Python services via daemon HTTP API",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-LIFE-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 3: Port Release and Lifecycle",
+    "summary": "Provide portman release <service-name> to release all ports allocated to a service",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-LIFE-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 3: Port Release and Lifecycle",
+    "summary": "Provide portman release --port <N> to release a specific port",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-LIFE-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 3: Port Release and Lifecycle",
+    "summary": "Support port reservations with portman reserve <port> --for <service> --until <date>",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-LIFE-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 3: Port Release and Lifecycle",
+    "summary": "Provide portman check to validate registry against live state; report stale and rogue ports",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-LIFE-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 3: Port Release and Lifecycle",
+    "summary": "Provide portman gc to interactively clean up stale allocations",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-001": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.1 Performance",
+    "summary": "Port scanning of typical project directory (10k files) completes in under 10 seconds",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-002": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.1 Performance",
+    "summary": "Port allocation completes in under 100ms",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-003": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.1 Performance",
+    "summary": "Web dashboard loads in under 2 seconds with up to 1000 port allocations",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-004": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.2 Reliability",
+    "summary": "SQLite registry must use WAL mode for concurrent CLI and web dashboard access",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-005": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.2 Reliability",
+    "summary": "All registry mutations must be transactional \u2014 no partial updates on failure",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-006": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.2 Reliability",
+    "summary": "Scanner must handle permission errors gracefully (skip unreadable files with warning)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-007": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.3 Usability",
+    "summary": "CLI output uses color and formatting via rich for readability",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-008": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.3 Usability",
+    "summary": "Error messages include actionable suggestions",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-009": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.3 Usability",
+    "summary": "Web dashboard usable without JavaScript (server-side rendered tables as baseline)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-010": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.4 Security",
+    "summary": "Web dashboard binds to 127.0.0.1 by default; require --host 0.0.0.0 for external exposure",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-011": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.4 Security",
+    "summary": "Registry file permissions set to user-only read/write (0600)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-012": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.5 Portability",
+    "summary": "Must run on Linux and macOS; Windows is non-goal for v1",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-NFR-013": {
+    "section": "5. Non-Functional Requirements",
+    "subsection": "5.5 Portability",
+    "summary": "Use only Python stdlib + listed dependencies; no system packages beyond Python 3.12+",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-POL-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 6: Port Range Policies",
+    "summary": "Define configurable port range policies per category in ~/.portman/config.yaml",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-POL-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 6: Port Range Policies",
+    "summary": "Enforce allocations with category hints fall within configured range; warn with --force override",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-POL-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 6: Port Range Policies",
+    "summary": "Allow defining reserved/blacklisted port ranges that are never allocated",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-POL-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 6: Port Range Policies",
+    "summary": "Allow defining per-project overrides for port ranges in .portman.yaml",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Store port registry in SQLite database at configurable location (default ~/.portman/registry.db)",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Provide portman list to display all registered ports in sortable table",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Provide portman list --service <name> to filter by service",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Provide portman list --range <start>-<end> to filter by port range",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Provide portman list --category <cat> to filter by category",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-006": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Provide portman list --status active|stale|reserved|conflict to filter by status",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-007": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Provide portman info <port> to show detailed port allocation information",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-008": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Provide portman search <query> to fuzzy-search across service names, descriptions, and paths",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-009": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Support exporting registry in json, csv, or yaml format",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-REG-010": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 4: Port Registry and Querying",
+    "summary": "Support importing allocations from file for bootstrapping",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "On portman init, recursively scan project root directories for port assignments in known configuration files",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "Parse docker-compose, .env, package.json, Python files, nginx conf, Procfile, YAML/TOML config files for port numbers",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "Detect ports from currently running processes on the host using ss/lsof/netstat",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "For each discovered port, record: port number, protocol, service name, source file path, line number, and whether in use",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "Classify discovered ports into categories: http, database, messaging, grpc, custom",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-006": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "After scanning, present summary and prompt user to confirm before committing to registry; highlight conflicts",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-007": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "Support incremental re-scan (portman scan) that detects new/changed/removed assignments and shows diff",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-008": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "Allow users to specify directories to exclude from scanning",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-009": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "Scan installed software for port assignments: systemd units, system service configs, package manifests, Docker containers, K3s/K8s services",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-010": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "For installed software ports, record discovery source, default port, and whether configurable or hardcoded",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-011": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "On portman init, scan both project directories and installed system software; support --projects-only and --system-only flags",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-SCAN-012": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 1: Port Discovery / Scanner",
+    "summary": "Maintain built-in knowledge base of well-known service ports to enrich discovered ports with service names",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-001": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Unit tests for each parser (docker-compose, .env, nginx, etc.) with sample fixtures",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-002": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Unit tests for allocator: sequential allocation, specific port, range allocation, conflict rejection",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-003": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Unit tests for validator: registry conflicts, live port detection, stale detection",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-004": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Integration tests for CLI commands using typer.testing.CliRunner",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-005": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Integration tests for REST API using TestClient",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-006": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Test fixtures with mock project directories containing various config file types",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-007": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "All tests use isolated in-memory or temp-dir SQLite database, never user's real registry",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-008": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Unit tests for system parsers (systemd units, docker inspect, k8s services) with mock command output fixtures",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-009": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Integration tests for daemon (start, allocate via socket, concurrent allocations, stop) with temporary socket path",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-TST-PM-010": {
+    "section": "12. Testing Requirements",
+    "subsection": "",
+    "summary": "Unit tests for well-known ports knowledge base covering port-to-service resolution",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-001": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Serve web dashboard via portman serve, defaulting to highest allocated HTTP port + 1 or 9999",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-002": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Allow overriding dashboard port with --port flag",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-003": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Dashboard home shows total ports by category, sortable/filterable table, conflicts in red, range utilization bars",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-004": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Provide Port Map visualization showing allocated vs available ports as heatmap or block grid",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-005": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Provide service detail view with all port allocations, source files, and history",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-006": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Provide live status page that probes allocated ports and shows listening/not responding/conflicting",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-007": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Support allocating and releasing ports from the web UI",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-008": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Use FastAPI backend and Jinja2 templates or lightweight JS frontend; no heavy SPA framework",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-009": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Dashboard auto-registers its own port in registry as portman-dashboard with category http",
+    "implement": "Y",
+    "enable": "Y"
+  },
+  "REQ-WEB-010": {
+    "section": "4. Functional Requirements",
+    "subsection": "Feature 8: Web Dashboard",
+    "summary": "Provide REST API at /api/v1/ for programmatic access to all port management operations",
+    "implement": "Y",
+    "enable": "Y"
+  }
+}
