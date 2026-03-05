@@ -1276,7 +1276,7 @@
   "REQ-RUN-005": {
     "section": "5. Running the Application",
     "subsection": "",
-    "summary": "Start scripts should be idempotent — detect and stop any existing process before starting a new one to avoid port conflicts and orphaned processes.",
+    "summary": "Start scripts should be idempotent \u2014 detect and stop any existing process before starting a new one to avoid port conflicts and orphaned processes.",
     "implement": "Y",
     "enable": "Y"
   },
